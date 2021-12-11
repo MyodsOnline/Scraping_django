@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block greeting %}
+    <h1>Home page</h1>
+    <p>Hello, {{ name }}.</p>
+    <i>Today is {{ date }}.</i>
+    <div>
+        <a href="{% url 'cities' %}">Cities list</a>
+    </div>
+    <div>
+        <a href="{% url 'posts-list' %}">Crud list</a>
+    </div>
+{% endblock %}

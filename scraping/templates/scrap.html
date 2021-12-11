@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    <h2>Cities list:</h2>
+    {% for city in cities %}
+        <p>{{ city }}</p>
+    {% endfor %}
+    <div>
+        <a href="{% url 'home' %}">Go home</a>
+    </div>
+{% endblock %}
