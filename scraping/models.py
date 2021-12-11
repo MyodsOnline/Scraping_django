@@ -11,7 +11,7 @@ class City(models.Model):
         verbose_name_plural = 'Cities'
 
     def __str__(self):
-        return f'{self.name} | {self.slug}'
+        return self.name
 
     def save(self, *args, **kwargs):
         if not self.slug:

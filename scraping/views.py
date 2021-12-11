@@ -8,6 +8,6 @@ def main(request):
     cities = City.objects.all()
     context = {
         'title': 'It works',
-        'cities': cities,
+        'cities_list': cities,
     }
     return render(request, 'scrap.html', context)
