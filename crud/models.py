@@ -4,6 +4,7 @@ from django.db import models
 class Posts(models.Model):
     post_title = models.CharField(max_length=300, unique=True)
     time = models.DateTimeField(auto_now_add=True)
+    is_posted = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Post'
