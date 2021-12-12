@@ -6,12 +6,18 @@
 
 {% block body %}
 {% for i in object_list %}
-    <h3>{{i.post_title}}</h3>
-    {% if i.is_posted == True %}
-    <p>True</p>
-    {% else %}
-    <p>False</p>
-    {% endif %}
-    <a href="{% url 'post-update' i.pk %}">update</a>
+    <div class="card my-3">
+        <div class="card-header {% if i.is_posted != True %}bg-danger{% endif %}">{{i.post_title}}</div>
+        <div class="card-body">
+            <h5 class="card-title">
+                {% if i.is_posted == True %}
+                True
+                {% else %}
+                False
+                {% endif %}
+            </h5>
+            <a href="{% url 'post-update' i.pk %}" class="btn btn-secondary">update</a>
+        </div>
+    </div>
 {% endfor %}
 {% endblock %}
