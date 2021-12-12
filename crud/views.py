@@ -13,6 +13,6 @@ class Posts_list(ListView):
 
 class Post_Update(UpdateView):
     model = Posts
-    fields = ['post_title']
+    fields = ['post_title', 'is_posted']
     template_name = 'crud_update.html'
     success_url = '/crud'

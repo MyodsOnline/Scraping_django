@@ -11,7 +11,7 @@ class City(models.Model):
         verbose_name_plural = 'Cities'
 
     def __str__(self):
-        return f'{self.name} | {self.slug}'
+        return self.name
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -34,3 +34,20 @@ class Language(models.Model):
         if not self.slug:
             self.slug = slugify(str(self.language))
         super().save(*args, **kwargs)
+
+
+class Vacancy(models.Model):
+    url = models.URLField(unique=True)
+    title = models.CharField(max_length=250, verbose_name='Job title')
+    company = models.CharField(max_length=250, verbose_name='Company')
+    description = models.TextField(verbose_name='Vacancy description')
+    city = models.ForeignKey('City', on_delete=models.CASCADE, verbose_name='City')
+    language = models.ForeignKey('Language', on_delete=models.CASCADE, verbose_name='Language')
+    timestamp = models.DateTimeField(auto_now_add=True, verbose_name='Adding timestamp')
+
+    class Meta:
+        verbose_name = 'Vacancy'
+        verbose_name_plural = 'Vacancies'
+
+    def __str__(self):
+        return self.title
