@@ -5,11 +5,35 @@
 {% endblock %}
 
 {% block body %}
-    <h2>Cities list:</h2>
-    {% for city in cities_list %}
-        <p>{{ city }}</p>
-    {% endfor %}
-    <div>
-        <a href="{% url 'home' %}">Go home</a>
+    <div class="row">
+        <div class="col-3">
+            <h2>Cities list:</h2>
+            {% for city in cities_list %}
+                <p>{{ city }}</p>
+            {% endfor %}
+            <h2>Lang list:</h2>
+            {% for lang in lang_list %}
+                <p>{{ lang.language }}</p>
+            {% endfor %}
+        </div>
+        <div class="col-9">
+            <div class="row container-fluid">
+                <h2>Job list:</h2>
+                {% for job in job_list %}
+                <div class="card mx-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <p>{{ job.city.name }}</p>
+                        <h5 class="card-title">{{ job.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ job.company }}</h6>
+                        <p class="card-text">{{ job.description|truncatechars:100 }}</p>
+                        <a href="/" class="card-link">{{ job.url|truncatechars:30 }}</a>
+                        <small>{{ job.timestamp|date:"SHORT_DATE_FORMAT" }}</small>
+                    </div>
+                </div>
+                {% empty %}
+                <h4 class="danger">Sorry, no job in this list.</h4>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}
