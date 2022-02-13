@@ -11,6 +11,11 @@
             {% for city in cities_list %}
                 <p>{{ city }}</p>
             {% endfor %}
+            <form method="get">
+                <label for="CitySearch" class="form-label">City Search</label>
+                <input type="text" class="form-control" id="CitySearch" name="city"><br>
+                <input type="submit" value="Search" class="btn btn-secondary">
+            </form>
             <h2>Lang list:</h2>
             {% for lang in lang_list %}
                 <p>{{ lang.language }}</p>
@@ -28,6 +33,7 @@
                         <p class="card-text">{{ job.description|truncatechars:100 }}</p>
                         <a href="/" class="card-link">{{ job.url|truncatechars:30 }}</a>
                         <small>{{ job.timestamp|date:"SHORT_DATE_FORMAT" }}</small>
+                        <small>|{{ job.language.language }}|</small>
                     </div>
                 </div>
                 {% empty %}

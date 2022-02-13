@@ -5,9 +5,12 @@ from .models import City, Language, Vacancy
 
 
 def main(request):
-    cities_list = City.objects.all()
+    cities_list = City.objects.all()[:3]
+    city = request.GET.get('city')
     lang_list = Language.objects.all()
     job_list = Vacancy.objects.all()
+    if city:
+        filtered_city = {}
     context = {
         'title': 'It works',
         'cities_list': cities_list,
