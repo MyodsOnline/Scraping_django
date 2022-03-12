@@ -1,23 +1,23 @@
-/* This file */
+/* General styles for all menus */
 .cbp-spmenu-push{
-	background-image:url(static/zvk/img/snap.PNG);
+	background-image:url(../img/snap.PNG);
 	background-size: cover;
 }
 
 .cbp-spmenu {
-	background: red;
+	background: rgba(200, 200, 200, 1);
 	position: fixed;
 	display: flex;
 	flex-direction: column;
 }
 
 .cbp-spmenu h3 {
-	color: red;
+	color: #afdefa;
 	font-size: 1.3em;
 	padding: 10px;
 	margin: 0;
 	font-weight: 300;
-	background: red;
+	background: #0d77b6;
 }
 
 /* .cbp-spmenu a {

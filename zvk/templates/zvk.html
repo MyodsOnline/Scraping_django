@@ -8,20 +8,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 		<title>OIK/ZVK integration</title>
 		<meta name="description" content="OIK/ZVK integration" />
-		<link rel="stylesheet" href="{% static 'zvk/css/component.css' %}">
-		<link rel="stylesheet" href="{% static 'zvk/css/default.css' %}">
+		<link rel="stylesheet" href="{% static 'zvk/css/comp.css' %}">
+		<link rel="stylesheet" href="{% static 'zvk/css/def.css' %}">
 		<link rel="stylesheet" href="{% static 'zvk/css/item.css' %}">
 		<script src="{% static 'zvk/js/modernizr.custom.js' %}"></script>
 	</head>
 	<body class="cbp-spmenu-push">
 		<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
 			<h3>Menu1</h3>
-			<a href="#">Celery seakale</a>
-			<a href="#">Dulse daikon</a>
-			<a href="#">Zucchini garlic</a>
-			<a href="#">Catsear azuki bean</a>
-			<a href="#">Dandelion bunya</a>
-			<a href="#">Rutabaga</a>
+			<a href="{% url 'home' %}">home</a>
+			<a href="{% url 'cities' %}">cities</a>
+			<a href="{% url 'posts-list' %}">posts-list</a>
 		</nav>
 		<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
 			<h3>Заявки на объекте</h3>
@@ -62,6 +59,29 @@
 				</form>
 				</div>
 				<div class="item_data">
+					{% for i in zvk %}
+					<table class="table">
+						<thead>
+							<tr>
+								<th><a href="/">{{ i.number }}</a></th>
+								<th>{{ i.category }}</th>
+								<th>{{ i.type }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="2" class="unit_name">{{ i.item }}</td>
+								<td><i>{{ i.status }}</i></td>
+							</tr>
+							<tr>
+								<td>{{ i.start }}</td>
+								<td>{{ i.end }}</td>
+								<td>{{ i.ready }}</td>
+							</tr>
+						</tbody>
+					</table>
+					{% endfor %}
+					{% comment basic_template %}
 					<table class="table">
 						<thead>
 							<tr>
@@ -82,26 +102,7 @@
 							</tr>
 						</tbody>
 					</table>
-					<table class="table">
-						<thead>
-							<tr>
-								<th><a href="/">22945</a></th>
-								<th>НО</th>
-								<th>АВ</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td colspan="2" class="unit_name">Комплект РЗА ВЭ 322 (АУВ, УРОВ, АОПН, УРОВ АОПН)</td>
-								<td><i>Разрешена</i></td>
-							</tr>
-							<tr>
-								<td>18:00 23.03.2022</td>
-								<td>18:00 28.03.2022</td>
-								<td>АГ - 04:00</td>
-							</tr>
-						</tbody>
-					</table>
+					{% endcomment %}
 					<a href="#">Показать все заявки</a>
 				</div>
 				<!-- <div class="item_note">
@@ -112,7 +113,7 @@
 		<div class="container">
 			<div class="main">
 				<section>
-					<button id="showLeft" disabled class="disabled">Show/Hide Left Slide Menu</button>
+					<button id="showLeft" class="disabled">{{ name }}</button>
 					<button id="showRight">Форма отображения заявок:</button>
 				</section>
 				<main>
