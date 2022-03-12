@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
@@ -8,4 +10,8 @@ urlpatterns = [
     path('', home, name='home'),
     path('scrap/', include('scraping.urls')),
     path('crud/', include('crud.urls')),
+    path('zvk/', include('zvk.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
