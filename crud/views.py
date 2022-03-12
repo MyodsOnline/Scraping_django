@@ -15,4 +15,4 @@ class Post_Update(UpdateView):
     model = Posts
     fields = ['post_title', 'is_posted', 'equipment_mode']
     template_name = 'crud_update.html'
-    success_url = '/crud'
+    success_url = '/crud/'
