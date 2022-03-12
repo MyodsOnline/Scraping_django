@@ -1,16 +1,1 @@
-[
-  {
-    "model": "zvk.zvk",
-    "pk": 1,
-    "fields": {
-      "number": 1,
-      "category": "YGHD",
-      "type": "DK",
-      "item": "DLkk f rgl;;k. sdfmkljrg fksdfkayb",
-      "status": "KHkju",
-      "start": "sdflkkorf",
-      "end": "sfrkmv",
-      "ready": "sdrgdf"
-    }
-  }
-]
+[{"model": "zvk.zvk", "pk": 2, "fields": {"number": 1213, "category": "НПЛ", "type": "ЗРР", "item": "Комплект РЗА В 320 (АУВ)", "status": "Разрешена", "start": "14:00 23.03.22", "end": "24:00 23.03.22", "ready": "04:00"}}]
