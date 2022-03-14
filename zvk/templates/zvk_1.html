@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'zvk/css/component.css' %}">
+    <link rel="stylesheet" href="{% static 'zvk/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'zvk/css/item.css' %}">
+	<script src="{% static 'zvk/js/modernizr.custom.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block menu %}{% endblock %}
+{% block body %}
+    <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+			<h3>Menu1</h3>
+			<a href="#">Celery seakale</a>
+			<a href="#">Dulse daikon</a>
+			<a href="#">Zucchini garlic</a>
+			<a href="#">Catsear azuki bean</a>
+			<a href="#">Dandelion bunya</a>
+			<a href="#">Rutabaga</a>
+		</nav>
+		<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+			<h3>Заявки на объекте</h3>
+			<div class="item">
+				<div class="item_control">
+					<form action="">
+						<div class="zvk_status">
+							<ul>
+								<li class="list list_active">
+									<input type="checkbox" checked>Открыта
+								</li>
+								<li class="list list_active">
+									<input type="checkbox" checked>Разрешена
+								</li>
+								<li class="list list_active">
+									<input type="checkbox">Рассмотрена
+								</li>
+								<li class="list">
+									<input type="checkbox">Закрыта
+								</li>
+							</ul>
+							<ul>
+								<li class="list list_active">
+									<input type="checkbox" checked>Все виды
+								</li>
+								<li class="list list_active">
+									<input type="checkbox" checked>Все сроки
+								</li>
+								<li class="list list_active">
+									<input type="checkbox" checked>Все категории
+								</li>
+								<li class="list">
+									№ <input type="number" name="zvk_number" id="zvk_number">
+								</li>
+							</ul>
+						</div>
+					<button class="zvk_status_name">Обновить ( )</button>
+				</form>
+				</div>
+				<div class="item_data">
+					<table class="table">
+						<thead>
+							<tr>
+								<th><a href="/">22945</a></th>
+								<th>НО</th>
+								<th>АВ</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="2" class="unit_name">Комплект РЗА ВЭ 322 (АУВ, УРОВ, АОПН, УРОВ АОПН)</td>
+								<td><i>Разрешена</i></td>
+							</tr>
+							<tr>
+								<td>18:00 23.03.2022</td>
+								<td>18:00 28.03.2022</td>
+								<td>АГ - 04:00</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table">
+						<thead>
+							<tr>
+								<th><a href="/">22945</a></th>
+								<th>НО</th>
+								<th>АВ</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="2" class="unit_name">Комплект РЗА ВЭ 322 (АУВ, УРОВ, АОПН, УРОВ АОПН)</td>
+								<td><i>Разрешена</i></td>
+							</tr>
+							<tr>
+								<td>18:00 23.03.2022</td>
+								<td>18:00 28.03.2022</td>
+								<td>АГ - 04:00</td>
+							</tr>
+						</tbody>
+					</table>
+					<a href="#">Показать все заявки</a>
+				</div>
+				<!-- <div class="item_note">
+					<p class="item_note_tip">Форма для отображения поданых заявок.</p>
+				</div> -->
+			</div>
+		</nav>
+		<div class="container">
+			<div class="main">
+				<section>
+					<button id="showLeft" disabled class="disabled">Show/Hide Left Slide Menu</button>
+					<button id="showRight">Форма отображения заявок:</button>
+				</section>
+				<main>
+					<div class="tip">table:hover => show a little icon to run js script (copy inner text to make dispatcer note</div>
+					<div class="description">
+						Запрос на модернизацию ОИК-11 в рамках взаимодействия с SIM ЗРП.
+					</div>
+				</main>
+			</div>
+		</div>
+		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+		<script src="{% static 'zvk/js/classie.js' %}"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				menuRight = document.getElementById( 'cbp-spmenu-s2' ),
+				showLeft = document.getElementById( 'showLeft' ),
+				showRight = document.getElementById( 'showRight' ),
+				body = document.body;
+
+			showLeft.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeft' );
+			};
+			showRight.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( menuRight, 'cbp-spmenu-open' );
+				// disableOther( 'showRight' );
+			};
+
+			function disableOther( button ) {
+				if( button !== 'showLeft' ) {
+					classie.toggle( showLeft, 'disabled' );
+				}
+				if( button !== 'showRight' ) {
+					classie.toggle( showRight, 'disabled' );
+				}
+			}
+		</script>
+	</body>
+{% endblock %}

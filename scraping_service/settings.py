@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'scraping',
     'crud',
     'zvk',
+    'pcus',
 ]
 
 MIDDLEWARE = [
