@@ -11,6 +11,7 @@ urlpatterns = [
     path('scrap/', include('scraping.urls')),
     path('crud/', include('crud.urls')),
     path('zvk/', include('zvk.urls')),
+    path('pcus/', include('pcus.urls')),
 ]
 
 if settings.DEBUG:

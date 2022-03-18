@@ -11,16 +11,27 @@
 		<link rel="stylesheet" href="{% static 'zvk/css/comp.css' %}">
 		<link rel="stylesheet" href="{% static 'zvk/css/def.css' %}">
 		<link rel="stylesheet" href="{% static 'zvk/css/item.css' %}">
+		<link rel="stylesheet" href="{% static 'zvk/css/rsp.css' %}">
 		<script src="{% static 'zvk/js/modernizr.custom.js' %}"></script>
 	</head>
 	<body class="cbp-spmenu-push">
-		<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-			<h3>Menu1</h3>
-			<a href="{% url 'home' %}">home</a>
-			<a href="{% url 'cities' %}">cities</a>
-			<a href="{% url 'posts-list' %}">posts-list</a>
+		<nav class="cbp-spmenu cbp-spmenu-vertical-left cbp-spmenu-left" id="cbp-spmenu-s1">
+			<div class="rsp_wrapper">
+				<h3>Menu1</h3>
+				<button id="open">-></button>
+				<div id="rsp_small">
+					<p>Text</p>
+				</div>
+				<div id="rsp_big">
+					
+					<a href="{% url 'home' %}">home</a>
+					<a href="{% url 'cities' %}">cities</a>
+					<a href="{% url 'posts-list' %}">posts-list</a>
+				</div>
+				
+			</div>
 		</nav>
-		<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+		<nav class="cbp-spmenu cbp-spmenu-vertical-right cbp-spmenu-right" id="cbp-spmenu-s2">
 			<h3>Заявки на объекте</h3>
 			<div class="item">
 				<div class="item_control">
@@ -113,7 +124,7 @@
 		<div class="container">
 			<div class="main">
 				<section>
-					<button id="showLeft" class="disabled">{{ name }}</button>
+					<button id="showLeft">Форма для РСП</button>
 					<button id="showRight">Форма отображения заявок:</button>
 				</section>
 				<main>
@@ -131,6 +142,9 @@
 				menuRight = document.getElementById( 'cbp-spmenu-s2' ),
 				showLeft = document.getElementById( 'showLeft' ),
 				showRight = document.getElementById( 'showRight' ),
+				useRSP = document.getElementById( 'open' ),
+				showRSP = document.getElementById( 'rsp_big' ),
+				hideRSP = document.getElementById( 'rsp_small' ),
 				body = document.body;
 
 			showLeft.onclick = function() {
@@ -141,7 +155,13 @@
 			showRight.onclick = function() {
 				classie.toggle( this, 'active' );
 				classie.toggle( menuRight, 'cbp-spmenu-open' );
-				// disableOther( 'showRight' );
+				disableOther( 'showRight' );
+			};
+
+			useRSP.onclick = function(){
+				classie.toggle( menuLeft, 'cbp-spmenu-vertical-left-opened' ),
+				classie.toggle( showRSP, 'shown'),
+				classie.toggle( hideRSP, 'hided')
 			};
 
 			function disableOther( button ) {

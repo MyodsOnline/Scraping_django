@@ -1,0 +1,18 @@
+.rsp_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+#rsp_small, #rsp_big {
+    height: 100vh;
+    flex-direction: column;
+    width: 100%;
+}
+
+.shown {
+    display: flex;
+}
+
+.hided {
+    display: none;
+}
