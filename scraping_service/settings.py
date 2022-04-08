@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'crud',
     'zvk',
     'pcus',
+    'boss_says',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'zvk/static'),
+    os.path.join(BASE_DIR, 'boss_says/static'),
 ]
 
 # Default primary key field type
