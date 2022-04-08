@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="{% static 'zvk/css/def.css' %}">
 		<link rel="stylesheet" href="{% static 'zvk/css/item.css' %}">
 		<link rel="stylesheet" href="{% static 'zvk/css/rsp.css' %}">
+		<link rel="stylesheet" href="{% static 'boss_says/font-awesome/css/font-awesome.min.css' %}">
 		<script src="{% static 'zvk/js/modernizr.custom.js' %}"></script>
 	</head>
 	<body class="cbp-spmenu-push">
@@ -125,7 +126,8 @@
 			<div class="main">
 				<section>
 					<button id="showLeft">Форма для РСП</button>
-					<button id="showRight">Форма отображения заявок:</button>
+					<a href="{% url 'home' %}" class="like_a_button"><i class="fa fa-grav" aria-hidden="true"></i></a>
+					<button id="showRight">Форма отображения заявок</button>
 				</section>
 				<main>
 					<div class="tip">table:hover => show a little icon to run js script (copy inner text to make dispatcer note</div>

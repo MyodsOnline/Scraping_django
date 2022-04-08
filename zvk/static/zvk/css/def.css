@@ -26,7 +26,8 @@ body {
 	color: #ccc;
 }
 
-.main > section button {
+.main > section button,
+.like_a_button {
 	border: none;
 	background: #47a3da;
 	color: #fff;
@@ -38,7 +39,19 @@ body {
 	margin: 0;
 }
 
-.main > section button:hover {
+.like_a_button {
+	width: 60px;
+	text-decoration: none;
+	border-radius: 5px;
+	margin: 0 3px;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.main > section button:hover,
+.like_a_button:hover {
 	background: #258ecd;
 }
 
