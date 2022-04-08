@@ -12,6 +12,7 @@ urlpatterns = [
     path('crud/', include('crud.urls')),
     path('zvk/', include('zvk.urls')),
     path('pcus/', include('pcus.urls')),
+    path('boss_says/', include('boss_says.urls')),
 ]
 
 if settings.DEBUG:

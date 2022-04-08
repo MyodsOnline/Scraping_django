@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss Says</title>
+    <link rel="stylesheet" href="{% static 'boss_says/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'boss_says/font-awesome/css/font-awesome.min.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="oneOfThree header_left">
+                <a href="{% url 'home' %}" class="styled_links"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+            </div>
+            <div class="oneOfThree header_center">
+                <h1>Boss says</h1>
+            </div>
+            <div class="oneOfThree header_right">
+                <a href="#" class="styled_links"><i class="fa fa-user" aria-hidden="true"></i>User.login</a>
+            </div>
+        </header>
+        <div class="tech">
+            <div class="oneOfThree"></div>
+            <div class="oneOfThree"></div>
+            <div class="oneOfThree"></div>
+        </div>
+        <main>
+            <div class="oneOfThree">
+                <div class="content">
+                    <div class="item">
+                        <i>06.04.2022</i>
+                        <a href="#" class="itemTitle_link"><h4>Тема сообщения</h4></a>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel mollitia eos, nulla repellendus, perferendis sapiente ipsam aspernatur ratione iste repellat magni inventore maxime nam laborum tempora debitis dolore beatae eligendi?
+                        </p>
+                        <a href="">ссылка, ели есть</a>
+                    </div>
+                    <div class="item">
+                        <i>04.04.2022</i>
+                        <a href="#" class="itemTitle_link"><h4>Тема сообщения</h4></a>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid eius labore, magnam aspernatur, quae fugit quaerat totam impedit culpa iure itaque? Assumenda labore excepturi iure aut, tenetur saepe, similique perspiciatis culpa nisi totam, nemo quisquam deserunt blanditiis ipsa aliquid consequatur repellendus sequi! Nobis officiis maiores quibusdam reprehenderit dolorum magnam, soluta tenetur explicabo sint minus est vel possimus numquam modi tempore.
+                        </p>
+                    </div>
+                    <div class="item">
+                        <i>30.03.2022</i>
+                        <a href="#" class="itemTitle_link"><h4>Lorem, ipsum dolor sit amet consectetur adipisicing.</h4></a>
+                        <p>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem, cupiditate nam placeat doloremque repudiandae praesentium in officiis nihil ex, quia ab molestias quidem. Magni, nam?
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="oneOfThree">
+                <div class="content">
+                    <div class="item">
+                        <i>30.03.2022</i>
+                        <a href="#" class="itemTitle_link"><h4>Lorem, ipsum dolor sit amet consectetur adipisicing.</h4></a>
+                        <p>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem, cupiditate nam placeat doloremque repudiandae praesentium in officiis nihil ex, quia ab molestias quidem. Magni, nam?
+                        </p>
+                        <a href="">ссылка, ели есть</a>
+                    </div>
+                </div>
+            </div>
+            <div class="oneOfThree">
+                <div class="content">
+                    <div class="item">
+                        <i>30.03.2022</i>
+                        <a href="#" class="itemTitle_link"><h4>Lorem, ipsum dolor sit amet consectetur adipisicing.</h4></a>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse quisquam sit aperiam eius quasi minus pariatur minima, unde porro repellendus odio distinctio vero similique quia ipsam ullam dicta eligendi ab quidem? Cum, excepturi ullam aliquam enim eius consequuntur voluptate corrupti commodi obcaecati sunt molestiae omnis nulla.
+                        </p>
+                    </div>
+                    <div class="item">
+                        <i>15.02.2022</i>
+                        <a href="#" class="itemTitle_link"><h4>Lorem, ipsum dolor sit amet consectetur adipisicing.</h4></a>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quas, obcaecati tempora corporis ipsum eius dolores ipsa culpa explicabo impedit totam sed veniam omnis? Voluptatem officiis ut eos aspernatur impedit ipsam repudiandae sunt expedita, eligendi, pariatur quod veritatis, esse eum quae! Officia quasi velit debitis. Quasi totam cumque voluptatum quas debitis aut placeat at aperiam!
+                        </p>
+                        <img src="{% static 'boss_says/img/sample.png' %}" class="itemImg" alt="">
+                    </div>
+                    <div class="item">
+                        <i>15.02.2022</i>
+                        <a href="#" class="itemTitle_link"><h4>Lorem, ipsum dolor sit amet consectetur adipisicing.</h4></a>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit voluptatem repellat est iure veniam ea inventore eos, dicta veritatis? Illo aut vero fuga inventore unde laboriosam voluptate vitae quidem consequuntur voluptas. Veniam maxime adipisci cupiditate iusto ducimus corporis harum magnam libero at molestiae voluptatum eaque, aperiam consequatur quod deleniti, consequuntur nesciunt suscipit molestias, recusandae facere? Eius natus suscipit quam in commodi aliquid. Quo maxime possimus voluptatum nihil enim quidem facilis magni exercitationem eos nobis labore neque, quas aspernatur voluptas totam a. Eligendi voluptatem cupiditate iste voluptatum rerum officia, vero maxime, totam ipsum animi illum fuga vitae. Asperiores, adipisci eligendi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="oneOfThree">
+                <img src="{% static 'boss_says/img/grily.png' %}" alt="userPic">
+                <h3>Boss Name Says</h3>
+            </div>
+            <div class="oneOfThree">
+                <img src="{% static 'boss_says/img/grily.png' %}" alt="userPic">
+                <h3>Boss Name Says</h3>
+            </div>
+            <div class="oneOfThree">
+                <img src="{% static 'boss_says/img/grily.png' %}" alt="userPic">
+                <h3>Boss Name Says</h3>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

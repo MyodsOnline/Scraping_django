@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     {{ title }}
 {% endblock %}
-
-{% block greeting %}
-    <div class="container-fluid bg-light text-center py-5">
-        <h1>Welcome to home page, {{ name }}!</h1>
-        <i>Today is {{ date }}.</i>
-    </div>
+{% block css %}
+    <link rel="stylesheet" href="{% static 'scraping/css/style.css' %}">
 {% endblock %}
+
+{% block backgroundvideo %}
+    <div class="backgroundvideo">
+        <div class="container-fluid bg-light text-center py-5 bg-opacity-50 text-white rounded">
+            <h1>Welcome to home page, {{ name }}!</h1>
+            <h4>Today is {{ date }}</h4>
+        </div>
+        <video src="{% static 'scraping/video/video.mp4' %}" muted loop autoplay></video>
+    </div>
+    {% endblock %}
