@@ -55,6 +55,10 @@ body {
 	background: #258ecd;
 }
 
+.like_a_button.fa-grav{
+    margin: 0;
+}
+
 .main > section button.active {
 	background: #0d77b6;
 }
