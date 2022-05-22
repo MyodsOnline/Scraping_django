@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss Says</title>
+    <link rel="stylesheet" href="{% static 'boss_says/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'boss_says/font-awesome/css/font-awesome.min.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="oneOfThree header_left">
+                <a href="{% url 'home' %}" class="styled_links"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+            </div>
+            <div class="oneOfThree header_center">
+                <h1>Boss says</h1>
+            </div>
+            <div class="oneOfThree header_right">
+                <a href="#" class="styled_links"><i class="fa fa-user" aria-hidden="true"></i>User.login</a>
+            </div>
+        </header>
+        <div class="tech">
+            <div class="oneOfThree"></div>
+            <div class="oneOfThree"></div>
+            <div class="oneOfThree"></div>
+        </div>
+        <main>
+            <div class="oneOfThree">
+                <div class="content">
+                    {% for message in messages %}
+                    {% if message.author.pk == 3 %}
+                    <div class="item">
+                        <i>{{ message.created }}</i>
+                        <a href="#" class="itemTitle_link"><h4>{{ message.title }}</h4></a>
+                        <p>{{ message.text }}</p>
+                        {% if message.image %}
+                            <img src="{{ message.image.url }}" class="itemImg" alt="">
+                        {% endif %}
+                        {% if message.link %}
+                            <a href="{{ message.link }}">Ссылка на пруфы</a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="oneOfThree">
+                <div class="content">
+                    {% for message in messages %}
+                    {% if message.author.pk == 2 %}
+                    <div class="item">
+                        <i>{{ message.created }}</i>
+                        <a href="#" class="itemTitle_link"><h4>{{ message.title }}</h4></a>
+                        <p>{{ message.text }}</p>
+                        {% if message.image %}
+                            <img src="{{ message.image.url }}" class="itemImg" alt="">
+                        {% endif %}
+                        {% if message.link %}
+                            <a href="{{ message.link }}">Ссылка на пруфы</a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="oneOfThree">
+                <div class="content">
+                    {% for message in messages %}
+                    {% if message.author.pk == 1 %}
+                    <div class="item">
+                        <i>{{ message.created }}</i>
+                        <a href="#" class="itemTitle_link"><h4>{{ message.title }}</h4></a>
+                        <p>{{ message.text }}</p>
+                        {% if message.image %}
+                            <img src="{{ message.image.url }}" class="itemImg" alt="">
+                        {% endif %}
+                        {% if message.link %}
+                            <a href="{{ message.link }}">Ссылка на пруфы</a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="oneOfThree">
+                <img src="{% static 'boss_says/img/semiboss_1.jpg' %}" alt="userPic" class="boss_pic">
+                <h3>Boss Name Says</h3>
+            </div>
+            <div class="oneOfThree">
+                <img src="{% static 'boss_says/img/boss.jpg' %}" alt="userPic" class="boss_pic">
+                <h3>Boss Name Says</h3>
+            </div>
+            <div class="oneOfThree">
+                <img src="{% static 'boss_says/img/semiboss_2.jpg' %}" alt="userPic" class="boss_pic">
+                <h3>Boss Name Says</h3>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
