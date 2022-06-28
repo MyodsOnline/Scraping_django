@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Posts list
+{% endblock %}
+
+{% block body %}
+    {% for el in json_data %}
+        <p>{{ el.Состояние_заявки }}</p>
+    {% endfor %}
+{% endblock %}
