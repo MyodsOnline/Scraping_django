@@ -18,14 +18,25 @@
 	<body class="cbp-spmenu-push">
 		<nav class="cbp-spmenu cbp-spmenu-vertical-left cbp-spmenu-left" id="cbp-spmenu-s1">
 			<div class="rsp_wrapper">
-				<h3>Menu1</h3>
+				<h3>Сигналы</h3>
 				<button id="open">-></button>
 				<div id="rsp_small">
 					<p>Text</p>
 				</div>
 				<div id="rsp_big">
-					
-					<a href="{% url 'home' %}">home</a>
+					<div class="single_svodka">
+						<a href="{% url 'home' %}">Изменения ТС</a>
+						<div class="single_svodka_item">
+							<p class="object">ПС 330 кВ Волхов-Северная</p>
+							<p class="equipment">В 330 <span class="state">отключен</span></p>
+						</div>
+						<div class="single_svodka_item active">
+							<p class="object">Северо-Западная ТЭЦ</p>
+							<p class="equipment">ГТУ-22 <span class="state">включен</span></p>
+						</div>
+						{{ cal|safe }}
+					</div>
+
 					<a href="{% url 'cities' %}">cities</a>
 					<a href="{% url 'posts-list' %}">posts-list</a>
 				</div>
@@ -69,8 +80,7 @@
 						</div>
 					<button class="zvk_status_name">Обновить ( )</button>
 				</form>
-				</div>
-				<div class="item_data">
+					<div class="item_data">
 					{% for i in zvk %}
 					<table class="table">
 						<thead>
@@ -117,9 +127,21 @@
 					{% endcomment %}
 					<a href="#">Показать все заявки</a>
 				</div>
-				<!-- <div class="item_note">
-					<p class="item_note_tip">Форма для отображения поданых заявок.</p>
-				</div> -->
+				</div>
+				<div class="item_note">
+					<h3>Персонал на смене:</h3>
+					<select name="select"> <!--Supplement an id here instead of using 'name'-->
+						<option value="value1" selected>...</option>
+						<option value="value2">Zatonskiy Dmitriy Urievich</option>
+						<option value="value3">Kazanov Uriy Gennadievich</option>
+					</select>
+					<div class="for_ej">
+						<button class="button_upd">Рапорт</button>
+						<button class="button_upd">Команда</button>
+						<button class="button_upd">Разрешение</button>
+						<button class="button_upd">Сообщение</button>
+					</div>
+				</div>
 			</div>
 		</nav>
 		<div class="container">
@@ -129,12 +151,14 @@
 					<a href="{% url 'home' %}" class="like_a_button"><i class="fa fa-grav" aria-hidden="true"></i></a>
 					<button id="showRight">Форма отображения заявок</button>
 				</section>
+{% comment %}
 				<main>
 					<div class="tip">table:hover => show a little icon to run js script (copy inner text to make dispatcer note</div>
 					<div class="description">
 						Запрос на модернизацию ОИК-11 в рамках взаимодействия с SIM ЗРП.
 					</div>
 				</main>
+{% endcomment %}
 			</div>
 		</div>
 		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
@@ -147,6 +171,7 @@
 				useRSP = document.getElementById( 'open' ),
 				showRSP = document.getElementById( 'rsp_big' ),
 				hideRSP = document.getElementById( 'rsp_small' ),
+				body = document.getElementsByTagName('body'),
 				body = document.body;
 
 			showLeft.onclick = function() {
@@ -157,6 +182,7 @@
 			showRight.onclick = function() {
 				classie.toggle( this, 'active' );
 				classie.toggle( menuRight, 'cbp-spmenu-open' );
+				classie.toggle( body, 'upd' );
 				disableOther( 'showRight' );
 			};
 
