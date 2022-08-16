@@ -1,13 +1,21 @@
 .item_control {
+    box-sizing: content-box;
+}
+
+form {
     border: 1px solid #0d77b6;
     border-radius: 6px;
-    box-sizing: content-box;
 }
 
 .item_note{
     display: flex;
     flex-direction: column;
+    padding-bottom: 20px;
+}
 
+select {
+    font-size: 30px;
+    margin: 10px 0;
 }
 
 #zvk_number{
@@ -58,6 +66,13 @@
 .unit_name {
     font-weight: 700;
 }
+
+.for_ej {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 button {
     border: 0;
     border-radius: 5px;
@@ -69,6 +84,12 @@ button {
     cursor: pointer;
     margin-bottom: 0;
   }
+
+.button_upd {
+    font-size: 12px;
+    width: 49.6%;
+    opacity: .6;
+}
 
 button:hover {
 	background: #258ecd;

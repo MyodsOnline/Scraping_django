@@ -16,3 +16,27 @@
 .hided {
     display: none;
 }
+
+.single_svodka {
+    display: flex;
+    border: 1px solid black;
+    margin: 3px;
+    padding: 3px;
+    flex-direction: column;
+}
+
+.single_svodka p {
+    color: black;
+    font-size: .8em;
+    margin: 0;
+}
+
+.single_svodka_item {
+    margin-top: 3px;
+    background: lightgray;
+    padding: 3px;
+}
+
+.active {
+    border-left: 4px solid red;
+}

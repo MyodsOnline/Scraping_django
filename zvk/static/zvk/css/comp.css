@@ -1,6 +1,11 @@
 /* General styles for all menus */
 .cbp-spmenu-push{
-	background-image:url(../img/snap.PNG);
+	background-image:url(../img/mag.jpg);
+	background-size: cover;
+}
+
+.upd {
+    background-image:url(../img/pulc.png);
 	background-size: cover;
 }
 
@@ -42,6 +47,8 @@
 	padding: 5px;
 	color: black;
 	flex-direction: column;
+	height: 100%;
+    justify-content: space-between;
 }
 /* Orientation-dependent styles for the content of the menu */
 
