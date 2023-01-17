@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="{% static 'zvk/css/def.css' %}">
 		<link rel="stylesheet" href="{% static 'zvk/css/item.css' %}">
 		<link rel="stylesheet" href="{% static 'zvk/css/rsp.css' %}">
+		<link rel="stylesheet" href="{% static 'zvk/css/popup.css' %}">
 		<link rel="stylesheet" href="{% static 'boss_says/font-awesome/css/font-awesome.min.css' %}">
 		<script src="{% static 'zvk/js/modernizr.custom.js' %}"></script>
 	</head>
@@ -82,6 +83,7 @@
 				</form>
 					<div class="item_data">
 					{% for i in zvk %}
+						{% if i.status == 'открыта' %}
 					<table class="table">
 						<thead>
 							<tr>
@@ -102,7 +104,32 @@
 							</tr>
 						</tbody>
 					</table>
+						{% endif %}
 					{% endfor %}
+
+					{% for i in zvk %}
+					<table class="table hidden">
+						<thead>
+							<tr>
+								<th><a href="/">{{ i.number }}</a></th>
+								<th>{{ i.category }}</th>
+								<th>{{ i.type }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="2" class="unit_name">{{ i.item }}</td>
+								<td><i>{{ i.status }}</i></td>
+							</tr>
+							<tr>
+								<td>{{ i.start }}</td>
+								<td>{{ i.end }}</td>
+								<td>АГ - {{ i.ready }}</td>
+							</tr>
+						</tbody>
+					</table>
+					{% endfor %}
+
 					{% comment basic_template %}
 					<table class="table">
 						<thead>
@@ -125,27 +152,29 @@
 						</tbody>
 					</table>
 					{% endcomment %}
-					<a href="#">Показать все заявки</a>
 				</div>
+					<a href="#" id="shower">Показать все заявки</a>
 				</div>
 				<div class="item_note">
-					<h3>Персонал на смене:</h3>
-					<select name="select"> <!--Supplement an id here instead of using 'name'-->
-						<option value="value1" selected>...</option>
-						<option value="value2">Zatonskiy Dmitriy Urievich</option>
-						<option value="value3">Kazanov Uriy Gennadievich</option>
-					</select>
+					<h3>Персонал на смене:
+						<select name="select">
+							<option value="value1" selected>...</option>
+							<option value="value2">Zatonskiy Dmitriy Urievich</option>
+							<option value="value3">Kazanov Uriy Gennadievich</option>
+						</select>
+					</h3>
+
 					<div class="for_ej">
-						<button class="button_upd">Рапорт</button>
-						<button class="button_upd">Команда</button>
-						<button class="button_upd">Разрешение</button>
-						<button class="button_upd">Сообщение</button>
-						<button class="button_upd incident">Нарушение нормального режима!</button>
+						<button class="button_upd" id="raport">Рапорт</button>
+						<button class="button_upd" id="command">Команда</button>
+						<button class="button_upd" id="approve">Разрешение</button>
+						<button class="button_upd" id="message">Сообщение</button>
+						<button class="button_upd incident" id="incedent">Нарушение нормального режима!</button>
 					</div>
 				</div>
 			</div>
 		</nav>
-		<div class="container">
+		<div class="container" id="container">
 			<div class="main">
 				<section>
 					<button id="showLeft">Форма для РСП</button>
@@ -160,10 +189,15 @@
 					</div>
 				</main>
 {% endcomment %}
+				<div id="popup">
+					<h1>Show it!</h1>
+					<p id="popup_close">X</p>
+				</div>
 			</div>
 		</div>
-		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+
 		<script src="{% static 'zvk/js/classie.js' %}"></script>
+		<script src="{% static 'zvk/js/zvk.js' %}"></script>
 		<script>
 			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
 				menuRight = document.getElementById( 'cbp-spmenu-s2' ),
