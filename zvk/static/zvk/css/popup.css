@@ -1,0 +1,13 @@
+#popup {
+    display: none;
+    width: 50%;
+    height: 50%;
+    margin: 30px auto;
+    background: gray;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#popup_close {
+    cursor: pointer;
+}

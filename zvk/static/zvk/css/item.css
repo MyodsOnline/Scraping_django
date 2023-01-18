@@ -11,11 +11,13 @@ form {
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
+    height: 240px;
 }
 
 select {
     font-size: 30px;
-    margin: 10px 0;
+    margin-top: 10px;
+    width: 100%;
 }
 
 #zvk_number{
@@ -67,6 +69,10 @@ select {
     font-weight: 700;
 }
 
+.hidden {
+    display: none;
+}
+
 .for_ej {
     display: flex;
     flex-wrap: wrap;
@@ -83,12 +89,17 @@ button {
     width: 100%;
     cursor: pointer;
     margin-bottom: 0;
-  }
+    opacity: .6;
+}
 
 .button_upd {
     font-size: 12px;
     width: 49.6%;
-    opacity: .6;
+}
+
+.button_upd.incident {
+    width: 100%;
+    background-color: brown;
 }
 
 button:hover {
