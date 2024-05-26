@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="frame">
+            <div class="header">
+                <h3>Параметры расчета для выбранного элемента</h3>
+            </div>
+            <div class="buttons">
+                <h4>Сетевой элемент: {{ selected_name }}</h4>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/second.js' %}"></script>
+</body>
+</html>

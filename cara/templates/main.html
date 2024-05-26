@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/reset.css'%}" />
+    <title>Переключения</title>
+    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  </head>
+  <body>
+    <div id = "pre_loader">
+      <div id = "box_loader">
+        <div id = "text_loader">Выполняется расчет</div>
+        <div id = "circle"></div>
+      </div>
+    </div>
+    <div id="pageContent" class="box hidden">
+      <div id="box_settings" class="start_settings">
+        {% block settings %}
+        {% endblock %}
+        <div id="rgm_settings">
+          <div>Настройки</div>
+          <button id="repeat_calc" class="button set_but" type="button">Цикличный расчет</button>
+          <button id="auto_calc" class="button set_but" type="button">Расчет с ПА</button>
+          <button id="comb_calc" class="button set_but" type="button">Комбинированный расчет АП</button>
+          <input type="text" id="text" />
+        </div>
+      </div>
+      <div class="box_element">
+        <div class = "filter_box">
+          <div class = "filter placeholder">Введите фильтр</div>
+          <button class="button" id="filter_but" type="button">Применить фильтр</button>
+        </div>
+        <form id="select_form" method="post">
+          {% csrf_token %}
+          {{form}}
+          <input id="input_status" type="hidden" name="set_data" value="">
+          <button class="button" id="calc" type="submit">Расчет</button>
+        </form>
+
+      </div>
+
+      {% block table %}
+      {% endblock %}
+
+      {% block script %}
+      {% endblock %}
+    </div>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/select2.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+  </body>
+</html>

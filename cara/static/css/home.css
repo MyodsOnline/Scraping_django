@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.wrapper, .frame, .header, .buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    /*justify-content: center;*/
+    align-items: center;
+    min-width: 700px;
+    padding: 10px;
+}
+
+.frame {
+    width: 700px;
+    box-shadow: 0 5px 10px -5px rgba(0, 0, 0,.7);
+}
+
+.header {
+    background-color: rgb(237 238 242);
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+}
+
+.buttons {
+    background-color: rgb(245, 191, 166);
+    height: 200px;
+    justify-content: center;
+    border-radius: 0 0 5px 5px;
+}
+
+.buttons a, button {
+    margin: 10px auto;
+    padding: 7px 27px;
+    cursor: pointer;
+    background-color: rgba(237, 238, 242, .9);
+    width: 60%;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    color: black;
+    box-shadow: 0 5px 5px -7px rgba(0, 0, 0,.7);
+}
+
+.buttons a:hover, button:hover {
+    box-shadow: none;
+    background-color: rgba(237, 238, 242, 1);
+}
+
+form {
+    padding: 10px;
+}
+
+#inputlist{
+    width: 514px;
+    font-size: 14px;
+    padding: 8px 5px;
+    border: none;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.form_buttons {
+    display: block;
+    text-align: end;
+}
+
+button {
+    border: 0;
+    font-size: 16px;
+    width: auto;
+    margin-left: 5px;
+}
+
+#clear, #graph {
+    border-radius: 5px;
+    padding: 7px 17px;
+    cursor: pointer;
+    background-color: aliceblue;
+    margin-left: 5px;
+    font-size: 16px;
+    box-shadow: 0 5px 5px -7px rgba(0, 0, 0,.7);
+}
+
+#clear:hover, #graph:hover {
+    box-shadow: none;
+    background-color: rgba(237, 238, 242, 1);
+}
+
+.graph {
+    margin-top: 30px;
+    display: none;
+    border: 1px dotted gray;
+    padding: 5px;
+}
+
+path:hover {
+    cursor: pointer;
+}

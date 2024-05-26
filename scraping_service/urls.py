@@ -13,6 +13,7 @@ urlpatterns = [
     path('zvk/', include('zvk.urls')),
     path('pcus/', include('pcus.urls')),
     path('boss_says/', include('boss_says.urls')),
+    path('cara/', include('cara.urls', namespace='cara')),
 ]
 
 if settings.DEBUG:

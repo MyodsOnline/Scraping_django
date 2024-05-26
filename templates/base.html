@@ -10,19 +10,25 @@
     <body>
         <div class="container">
         {% block menu %}
-            <nav class="navbar navbar-expand-lg navbar-light mb-2" style="background-color: #e3f2fd;">
+            <nav class="navbar mt-2 navbar-expand-lg navbar-light mb-2" style="background-color: #e3f2fd;">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="{% url 'home' %}">Scraping</a>
+                    <a class="navbar-brand" href="{% url 'home' %}">РСП-Нотификатор</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+<!--                        <div class="navbar-nav">-->
+<!--                            <a class="nav-link" href="{% url 'zvk' %}">Zvk</a>-->
+<!--                            <a class="nav-link" href="{% url 'cities' %}">Jobs</a>-->
+<!--                            <a class="nav-link" href="{% url 'posts-list' %}">Crud</a>-->
+<!--                            <a class="nav-link" href="{% url 'pcus' %}">Pcus</a>-->
+<!--                            <a class="nav-link" href="{% url 'boss_says' %}">Boss says</a>-->
+<!--                        </div>-->
                         <div class="navbar-nav">
-                            <a class="nav-link" href="{% url 'zvk' %}">Zvk</a>
-                            <a class="nav-link" href="{% url 'cities' %}">Jobs</a>
-                            <a class="nav-link" href="{% url 'posts-list' %}">Crud</a>
-                            <a class="nav-link" href="{% url 'pcus' %}">Pcus</a>
-                            <a class="nav-link" href="{% url 'boss_says' %}">Boss says</a>
+                            <a class="nav-link" href="{% url 'zvk' %}">РСП</a>
+                            <a class="nav-link" href="{% url 'boss_says' %}">еЖ-3</a>
+                            <a class="nav-link" href="{% url 'posts-list' %}">ЖДИ</a>
+                            <a class="nav-link" href="{% url 'pcus' %}">Портал СО</a>
                         </div>
                     </div>
                 </div>

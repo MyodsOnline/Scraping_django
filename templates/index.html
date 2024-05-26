@@ -10,10 +10,14 @@
 
 {% block backgroundvideo %}
     <div class="backgroundvideo">
-        <div class="container-fluid bg-light text-center py-5 bg-opacity-50 text-white rounded">
-            <h1>Welcome to home page, {{ name }}!</h1>
-            <h4>Today is {{ date }}</h4>
+        <div class="container-fluid bg-light text-center p-5 bg-opacity-50 text-white rounded">
+            <h4 class="text-end fw-lighter">{{ date }}</h4>
+            <h1 class="mb-4">{{ name }},</h1>
+<!--            <h1 class="mb-5">проверьте личный кабинет в <a>РСП</a></h1>-->
+            <h4 class="text-start plm-3">— вам нужно подписать интруктаж в <a class="link-light">РСП</a></h4>
+            <h4 class="text-start plm-3">— вам нужно ознакомиться с распоряжениями в <a class="link-light">РСП</a></h4>
+            <h4 class="text-start plm-3">— у вас в <a class="link-light">еЖ-3</a> есть визы, которые нужно просмотреть</h4>
         </div>
         <video src="{% static 'scraping/video/video.mp4' %}" muted loop autoplay></video>
     </div>
-    {% endblock %}
+{% endblock %}
