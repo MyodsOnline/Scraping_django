@@ -4,7 +4,7 @@
     font-family: sans-serif;
 }
 
-.wrapper, .frame, .header, .buttons {
+.wrapper, .frame, .buttons {
     display: flex;
     flex-direction: column;
 }
@@ -24,10 +24,32 @@
 }
 
 .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: rgb(237 238 242);
     padding: 10px;
     border-radius: 5px 5px 0 0;
+}
+
+.controls {
+    flex-grow: 1;
+    display: flex;
+}
+
+.controls a {
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 20px;
+    margin-right: 3px;
     text-align: center;
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+}
+
+h3 {
+    flex-grow: 1;
 }
 
 .buttons {
@@ -96,7 +118,7 @@ button {
 }
 
 .graph {
-    margin-top: 30px;
+    margin-top: 10px;
     display: none;
     border: 1px dotted gray;
     padding: 5px;

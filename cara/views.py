@@ -17,8 +17,10 @@ def main_page(request):
 
 
 def home_page(request):
+    previous_page = request.META.get('HTTP_REFERER', None)
     context = {
         'title': 'Home page',
+        'previous_page': previous_page
     }
     return render(request, 'home.html', context=context)
 
@@ -39,5 +41,9 @@ def ui_page(request):
 
 def av_page(request):
     selected_name = request.GET.get('selected_name')
-    return render(request, 'av.html', {'selected_name': selected_name})
+    try:
+        branch = BranchData.objects.get(name=selected_name)
+    except:
+        branch = None
+    return render(request, 'av.html', {'branch': branch})
 
