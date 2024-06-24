@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second view</title>
+    <link rel="stylesheet" href="{% static 'css/second.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="settings">
+            <header>
+                <h3 class="logo">Settings</h3>
+                <div class="btn" role="button">
+                    <label class="label_for_checkbox">
+                        <div>
+                            <input id="loop" type="checkbox" class="cust_dis">
+                            <span class="cust_act"></span>
+                        </div>
+                        <p>Цикличный расчет аварийных процессов</p>
+                    </label>
+                </div>
+                <div class="btn" role="button">
+                    <label class="label_for_checkbox">
+                        <div>
+                            <input id="pa" type="checkbox" class="cust_dis">
+                            <span class="cust_act"></span>
+                        </div>
+                        <p>Расчет с учетом действия автоматики</p>
+                    </label>
+                </div>
+                <div class="btn" role="button">
+                    <label class="label_for_checkbox">
+                        <div>
+                            <input id="comb" type="checkbox" class="cust_dis">
+                            <span class="cust_act"></span>
+                        </div>
+                        <p>Комбирированный расчет АП</p>
+                    </label>
+                </div>
+                <input class="btn" type="text" id="text" placeholder="Temperature" pattern="\d*" title="Допустимы только целочисленные значения температуры"/>
+            </header>
+        </header>
+        <main>            
+            <div class="container">
+                <input type="text" list="options" id="inputlist" placeholder="Выбор элемента на котором предстоят переключения">
+                <datalist id="options">
+                </datalist>
+                <span id="clear">Очистить поле</span>
+            </div>
+            <div class="container">
+                <table>
+                    <thead>
+                      <tr>
+                        <th scope="col">
+                            <input type="checkbox" name="master" id="master_check">
+                        </th>
+                        <th scope="col">Выбор аварийных процессов</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+            </div>
+        </main>
+        <footer>
+            <div class="info">
+                <a href="index.html">Вертикальный вид</a><br/>
+            </div>
+            <div class="info">
+                Срез данных за 12:34 23.05.2024
+            </div>
+        </footer>
+    </div>
+    <script src="{% static 'js/second.js' %}"></script>
+</body>
+</html>

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'zvk',
     'pcus',
     'boss_says',
+    'cara',
 ]
 
 MIDDLEWARE = [
@@ -135,6 +136,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'scraping/static'),
     os.path.join(BASE_DIR, 'zvk/static'),
     os.path.join(BASE_DIR, 'boss_says/static'),
+    os.path.join(BASE_DIR, 'sara/static'),
 ]
 
 MEDIA_URL = '/media/'

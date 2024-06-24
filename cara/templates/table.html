@@ -1,0 +1,115 @@
+{% extends 'main.html' %}
+
+
+{% block settings %}
+<div id = "time_file">Время среза расчетного файла:<br>{{ mass_rastr_result|index:0|el_dict:"last_date"}}</div>
+{% endblock %}
+
+{% block table %}
+{% for rastr_result in mass_rastr_result%}
+	{% with numb=forloop.counter0 %}
+		<table class="table_info">
+			<caption id="chopa">{{mass_name_elem|index:numb}}</caption>
+			<thead>
+				<tr>
+					<th rowspan="2" style="vertical-align: middle">Режим</th>
+					<th colspan="4">Напряжения в узлах</th>
+					<th colspan="4">Токовая загрузка</th>
+					<th colspan="1">Автоматика</th>
+				</tr>
+				<tr>
+					<th>Название узла</th>
+					<th>U, кВ</th>
+					<th>Uзд, кВ</th>
+					<th>Изм, %</th>
+					<th>Название ветви</th>
+					<th>I, А</th>
+					<th>Iадтн, А</th>
+					<th>Изм, %</th>
+					<th>ПОры и УВ</th>
+					<!-- <th>Наименование ПА</th> -->
+				</tr>
+			</thead>
+			<tbody>
+					{% if rastr_result|el_dict:"rgm_code" != 0 %}
+						<tr>
+							<td>Режим не существует</td>
+							{% for i in range_arr %}
+								<td></td>	
+							{% endfor %}
+						</tr>
+					{% else %}
+						{% for row in rastr_result|el_dict:"mass_data" %}
+							{% with k=forloop.counter0 %}
+								<tr>
+									<td class="rgm_{{numb}}">Режим существует</td>
+									{% for value in row %}
+										{% if forloop.counter == 1 and k < rastr_result|el_dict:"title_node"|length %}
+											<td title = "ny={{rastr_result|el_dict:'title_node'|index:k}}">{{value}}</td> 
+										{% elif forloop.counter == 5 and k < rastr_result|el_dict:"title_vetv"|length %}
+											<td class = "left" title = "ip,iq,np={{rastr_result|el_dict:'title_vetv'|index:k}}">{{value}}</td>
+										{% elif forloop.counter == 9 %}
+											<td class = "left span">{{value}}</td>
+										{% else %}
+											<td>{{value}}</td>  
+										{% endif %} 
+									{% endfor %}
+								</tr>
+							{% endwith %}
+						{% endfor %}
+					{% endif %}
+			</tbody>
+		</table>
+	{% endwith %}
+{% endfor %}
+<script>
+	var mass_emerge = {{mass_name_elem|length}}
+	for (let k=0; k < mass_emerge; k++){
+		var mass_td_rgm = document.getElementsByClassName("rgm_"+k)
+		len=mass_td_rgm.length
+		for (let i=1; i < len; i++){
+			mass_td_rgm[1].remove()
+		}
+		if (mass_td_rgm[0]){
+			mass_td_rgm[0].setAttribute("rowspan", len)
+		}
+	}
+
+	// Объединяем ячейки Автоматики
+	td_span = document.getElementsByClassName("span");
+	len_td_span = td_span.length;
+	for (let i=0; i < len_td_span-1; i++){
+		if ((td_span[i].innerHTML[0] == td_span[i+1].innerHTML[0]) || td_span[i+1].innerHTML == ""){
+			td_span[i].style.borderBottom = "none";
+			td_span[i+1].style.borderTop = "none";
+		}
+	}
+</script>
+{% endblock %}
+
+{% block script %}
+<script>
+	document.getElementById("box_settings").style.justifyContent = "space-between"
+</script>
+
+{% for key, value in status_but.items %}
+	{% if status_but|el_dict:key == True%}
+		<script>
+			document.getElementById("{{key}}").classList.add("active");
+			document.getElementById("{{key}}").textContent += " (ВКЛЮЧЕНО)";
+		</script>
+	{% endif %}
+{% endfor %}
+{% if status_but|el_dict:"repeat_calc" == True%}
+	<script>
+		select_elem = document.getElementById("id_select_field");
+		var old_data = JSON.parse('{{old_data|safe}}');
+		old_data.forEach(value => {
+			var optionToSelect = select_elem.querySelector('option[value="'+ value +'"]');
+			if (optionToSelect){
+				optionToSelect.selected = true;
+			}
+		})
+	</script>
+{% endif %}
+{% endblock %}

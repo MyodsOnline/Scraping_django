@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="frame">
+            <div class="header">
+                <div class="controls">
+                   <a href="{% url 'cara:ui_page' %}">«</a>
+                   <a href="{% url 'cara:carahome' %}">~</a>
+                </div>
+                <h3>Параметры расчета для выбранного элемента</h3>
+            </div>
+            <div class="buttons">
+                <h4>{% if branch %}
+                    Сетевой элемент: {{ branch.iq }} - {{ branch.name }}
+                    {% else %}
+                    Произошла ошибка, не найден элемент сети
+                    {% endif %}
+                </h4>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/second.js' %}"></script>
+</body>
+</html>

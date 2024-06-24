@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-rows: 62px 1fr 62px;
+    align-items: stretch;
+    height: 100vh;
+}
+
+.logo {
+    margin: 10px auto;
+    text-decoration: underline;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+.settings {
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+
+    .btn {
+        display: flex;
+        border-radius: 5px;
+        margin: 5px;
+        width: 180px;
+        background-color: floralwhite;
+        padding: 5px 5px 5px 10px;
+        box-shadow: 0 5px 10px -5px rgba(0, 0, 0,.7);
+    }
+}
+
+input.btn {
+    border: none;
+    height: 36px;
+    font-size: 14px;
+}
+
+main {
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.container {
+    margin: 10px auto;
+    display: flex;
+}
+
+.cust_dis {
+    opacity: 0;
+    margin-right: -2px;
+}
+
+.cust_act {
+    position: absolute;
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    margin-left: -15px;
+    margin-top: 4px;
+    border: 1px solid rgb(196, 7, 7);
+}
+
+.cust_dis:checked ~ .cust_act {
+    background-color: red;
+    box-shadow: 0 0 3px 1px deeppink;
+}
+
+.label_for_checkbox {
+    display: flex;
+    cursor: pointer;
+    p {
+        font-weight: 100;
+    }
+}
+.active {
+    background-color: aquamarine;
+}
+
+.info {
+    display: flex;
+    border-radius: 5px;
+    margin: 10px 5px 5px;
+    background-color: floralwhite;
+    padding: 5px 5px 5px 10px;
+    box-shadow: 0 -5px 10px -5px rgba(0, 0, 0,.7);
+    width: 180px;
+}
+
+#clear {
+    border: 1px solid cornflowerblue;
+    color: cornflowerblue;
+    border-radius: 5px;
+    padding: 6px 7px;
+    cursor: pointer;
+    background-color: aliceblue;
+    margin-left: 5px;
+}
+
+#inputlist{
+    width: 500px;
+    padding: 7px;
+    font-size: 1em;
+}
+
+/* стили для таблицы */
+table {
+    border-collapse: collapse;
+    border: 1px solid cornflowerblue;
+    width: 650px;
+}
+  
+caption {
+    caption-side: top;
+    padding: 10px;
+    font-weight: 400;
+}
+  
+thead,
+tfoot {
+    background-color: rgb(228 240 245);
+}
+  
+th,
+td {
+    border: 1px solid cornflowerblue;
+    padding: 8px 10px;
+}
+  
+tbody > tr:nth-of-type(even) {
+    background-color: rgb(237 238 242);
+}
+  
+tfoot th {
+    text-align: right;
+}
+
+tfoot td {
+    font-weight: bold;
+}
+
+
+/* стили для footer */
+footer {
+    display: flex;
+    background-color: gainsboro;
+}
