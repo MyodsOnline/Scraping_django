@@ -15,6 +15,7 @@
                 <h3>Выбор сетевого элемента</h3>
             </div>
             <div class="buttons">
+                {% include 'includes/datetime_select.html' %}
                 <form id="branch_chose" action="{% url 'cara:av_page' %}" method="GET">
                     {% csrf_token %}
                     <input type="text"
@@ -29,6 +30,7 @@
                     {% endfor %}
                     </datalist>
                     <div class="form_buttons">
+                        <input type="datetime-local" id="meeting-time" class="datetime_local"/>
                         <span id="graph">Открыть схему</span>
                         <button type="submit">Подтвердить выбор</button>
                     </div>
@@ -36,9 +38,10 @@
             </div>
         </div>
         <div class="graph">
-            {% include 'graph.html' %}
+            {% include 'big_svg.html' %}
         </div>
     </div>
     <script src="{% static 'js/ui.js' %}"></script>
+    <script src="{% static 'js/datetime_select.js' %}"></script>
 </body>
 </html>

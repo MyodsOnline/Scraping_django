@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time AJAX</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <label for="data">Дата:</label>
+    <input id="data" name="data" list="dateList">
+    <datalist id="dateList">
+        {% for date in dates %}
+            <option value="{{ date }}">
+        {% endfor %}
+    </datalist>
+
+    <label for="time">Время:</label>
+    <input id="time" name="time" list="timeList">
+    <datalist id="timeList">
+        <!-- options -->
+    </datalist>
+    <script src="{% static 'js/time.js' %}"></script>
+</body>
+</html>
