@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import main_page, mode_page, home_page, ui_page, av_page
+from .views import main_page, mode_page, home_page, ui_page, av_page, get_times, index
 
 app_name = 'cara'
 urlpatterns = [
@@ -9,4 +9,6 @@ urlpatterns = [
     path('mode/', mode_page, name='mode_page'),
     path('ui/', ui_page, name='ui_page'),
     path('av/', av_page, name='av_page'),
+    path('time/', index, name='time'),
+    path('get_times/', get_times, name='get_times'),
 ]

@@ -118,3 +118,4 @@ media/
 # !**/migrations
 # !**/migrations/__init__.py
 /cara/static/fonts/
+/cara/Good/

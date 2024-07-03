@@ -1,7 +1,11 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 
 from .forms import SelOffEls
 from .models import BranchData
+from .extraction_util.walk_dir import scan_basedir
+from .utils import data_scan, time_scan
+
 
 def main_page(request):
     mass_name_elem = ['mass_name_elem_1', 'mass_name_elem_2', 'mass_name_elem_3']
@@ -32,9 +36,11 @@ def mode_page(request):
 
 def ui_page(request):
     branches = BranchData.objects.all()
+    time_list = scan_basedir()
     context = {
         'title': 'Ui page',
         'branches': branches,
+        'time_list': time_list,
     }
     return render(request, 'ui.html', context=context)
 
@@ -47,3 +53,13 @@ def av_page(request):
         branch = None
     return render(request, 'av.html', {'branch': branch})
 
+
+def get_times(request):
+    selected_date = request.GET.get('date')
+    times = time_scan(selected_date)
+    return JsonResponse({'times': times})
+
+
+def index(request):
+    dates = data_scan()
+    return render(request, 'temp.html', {'dates': dates})
