@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DateSelect</title>
+</head>
+<body>
+  <form id="date_chose" method="POST" action="{% url 'ck11:ck_result' %}">
+      {% csrf_token %}
+      <label for="dateEnd">Выбор даты:</label>
+      <input type="date" id="dateEnd" name="dateEnd">
+      <button type="submit">Подтвердить</button>
+  </form>
+</body>
+</html>

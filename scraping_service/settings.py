@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'pcus',
     'boss_says',
     'cara',
+    'ck11',
 ]
 
 MIDDLEWARE = [
