@@ -14,6 +14,7 @@ urlpatterns = [
     path('pcus/', include('pcus.urls')),
     path('boss_says/', include('boss_says.urls')),
     path('cara/', include('cara.urls', namespace='cara')),
+    path('ck/', include('ck11.urls', namespace='ck11')),
 ]
 
 if settings.DEBUG:
