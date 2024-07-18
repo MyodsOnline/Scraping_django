@@ -5,13 +5,12 @@
     <title>Result</title>
 </head>
 <body>
+{{ description }}
 {% for item in data_list  %}
     <h4>{{ item.uid }}</h4>
-
     {% for item_value in item.value %}
         {{ item_value.value }},
     {% endfor %}
-
 {% endfor %}
 </body>
 </html>
