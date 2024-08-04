@@ -6,7 +6,7 @@ import requests
 import json
 from django.conf import settings
 
-from ck11.api_ck11.get_token_ck import get_token_ck11
+from ..api_ck11.get_token_ck import get_token_ck11
 
 load_dotenv()
 

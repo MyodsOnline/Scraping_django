@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG select</title>
+    <link rel="stylesheet" href="{% static 'css/svg.css' %}">
+</head>
+<body>
+
+    <form id="select_form" method="GET">
+        {% csrf_token %}
+        {{form}}
+        <button class="button" id="graph_button" type="button">Открыть схему</button>
+        <button class="button" id="submit_but" type="submit">Подтвердить выбор</button>
+        <input id="input_status" name="set_data" value="" type="hidden">
+    </form>
+
+    <div id="svg_content">
+        <div class="wrapper" id="scheme">
+          {{ svg_data|safe }}
+        </div>
+    </div>
+    <script src="{% static 'js/panzoom.js' %}"></script>
+    <script src="{% static 'js/svg.js' %}"></script>
+</body>
+</html>
