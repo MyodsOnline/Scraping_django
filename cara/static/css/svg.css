@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#svg_content {
+    display: none;
+    width: calc(100vw - 40px);
+    height: calc(100vh - 60px);
+    margin: 20px;
+    border: 1px dotted red;
+}
+
+#input_status {
+    width: 70vw;
+}
+
+path:hover, rect:hover {
+    cursor: pointer;
+}

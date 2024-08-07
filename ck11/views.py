@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-
-from .models import UIDMapping
+from .models
+import UIDMapping
+from .utils.expotr_svg import return_svg_from_file
 from .utils.get_pbr_api import get_pbr_get_table_ck11, get_local_uid_list
 
 
@@ -26,5 +27,14 @@ def get_pbr_data_view(request):
                 'description': description
             }
             return render(request, 'pbr.html', context)
-        else:
-            return redirect('/')
+
+          
+def svg_data_view(request):
+    try:
+        svg_data = return_svg_from_file('output.svg')
+    except FileNotFoundError:
+        svg_data = f'Source is empty'
+    context = {
+        'svg_data': svg_data,
+    }
+    return render(request, 'svg.html', context)

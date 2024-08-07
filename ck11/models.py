@@ -7,3 +7,14 @@ class UIDMapping(models.Model):
 
     def __str__(self):
         return f'{self.uid} - {self.title}'
+
+
+class DatetimeValues(models.Model):
+    uid = models.ForeignKey(UIDMapping, on_delete=models.CASCADE)
+    timeStamp = models.DateTimeField()
+    timeStamp2 = models.DateTimeField()
+    qCode = models.IntegerField()
+    value = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.uid} - {self.timeStamp} - {self.value}'
