@@ -1,9 +1,10 @@
 import os
 import py7zr
 
-# получение путей к файлам расчета
+# получение путей к тестовым файлам расчета
 current_dir = os.path.dirname(os.path.dirname(__file__))
 work_dir = os.path.join(current_dir, 'Good')
+# заменить на реальный путь к файлам расчета
 # PATH = r"\\srv-smzu2-sz\CFRAS\FilesRegim\Good"
 
 
@@ -13,9 +14,14 @@ def scan_basedir() -> list:
     :param path: путь к директории
     :return: список папок внутри директории
     """
-    # получение путей к файлам расчета
-    current_dir = os.path.dirname(os.path.dirname(__file__))
-    path = os.path.join(current_dir, 'Good')
+    # получение путей к тестовым файлам расчета
+    TEST = True
+    if TEST:
+        current_dir = os.path.dirname(os.path.dirname(__file__))
+        path = os.path.join(current_dir, 'Good')
+    else:
+        path = r"\\srv-smzu2-sz\CFRAS\FilesRegim\Good"
+
     try:
         first_level_dirs = []
         with os.scandir(path) as base_dir:
@@ -69,4 +75,4 @@ def print_file_path():
 
 
 if __name__ == '__main__':
-    print(scan_basedir(work_dir))
+    print(scan_basedir())
