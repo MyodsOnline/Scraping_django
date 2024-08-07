@@ -5,11 +5,16 @@
     <title>DateSelect</title>
 </head>
 <body>
-  <form id="date_chose" method="POST" action="{% url 'ck11:ck_result' %}">
+    <form id="date_chose" method="POST" action="{% url 'ck11:ck_result' %}">
       {% csrf_token %}
       <label for="dateEnd">Выбор даты:</label>
       <input type="date" id="dateEnd" name="dateEnd">
       <button type="submit">Подтвердить</button>
-  </form>
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelector('#dateEnd').value = new Date().toISOString().substr(0, 10);
+        });
+    </script>
 </body>
 </html>
