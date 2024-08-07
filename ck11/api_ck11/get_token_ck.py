@@ -6,7 +6,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def get_token_ck11():
+def get_token_ck11() -> dict:
+    """
+    Функция получения токена авторизации в api СК-11
+    :return: словарь параметорв для осуществления запроса с api СК11
+    """
     api_path = os.getenv('API_PATH')
     login = os.getenv('LOGIN')
     password = os.getenv('PASSWORD')
