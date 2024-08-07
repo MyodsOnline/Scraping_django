@@ -1,12 +1,6 @@
 import os
 import py7zr
 
-# получение путей к тестовым файлам расчета
-current_dir = os.path.dirname(os.path.dirname(__file__))
-work_dir = os.path.join(current_dir, 'Good')
-# заменить на реальный путь к файлам расчета
-# PATH = r"\\srv-smzu2-sz\CFRAS\FilesRegim\Good"
-
 
 def scan_basedir() -> list:
     """
@@ -31,10 +25,10 @@ def scan_basedir() -> list:
         return first_level_dirs
     except FileNotFoundError:
         print(f'Directory "{path}" does not exist.')
-        return []
+        return ['Нет файлов']
     except PermissionError:
         print(f'Permission denied to access {path}')
-        return []
+        return ['Доступ закрыт']
 
 
 def scan_subdirectories(path, directory_name):
