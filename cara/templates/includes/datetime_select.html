@@ -1,12 +1,10 @@
-<div class="container">
-    <label for="date-input">Выберите дату:</label>
-    <input type="date" id="date-input" name="date-input">
-
-    <label for="time-input">Выберите время:</label>
-    <input list="time-options" id="time-input" name="time-input" placeholder="Введите время" disabled>
-    <datalist id="time-options">
-        {% for time in time_list %}
-            <option value="{{ time }}"></option>
+<div class="datetime-container">
+    <label for="date-input">Дата:</label>
+    <select id="date-input" name="date-input">
+        {% for date in date_list %}
+            <option value="{{ date }}">{{ date }}</option>
         {% endfor %}
-    </datalist>
+    </select>
+    <label for="time-input">Время:</label>
+    <input type="time" id="time-input" name="time-input">
 </div>

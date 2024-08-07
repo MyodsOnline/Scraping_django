@@ -128,9 +128,10 @@ path:hover {
     cursor: pointer;
 }
 
-.datetime_local {
+.datetime-container {
+    display: inline-block;
     font-size: 16px;
-    padding: 5px 7px;
+    padding: 6px 7px 5px;
     border-radius: 5px;
     border: none;
     background-color: aliceblue;
