@@ -37,7 +37,6 @@ def mode_page(request):
 def ui_page(request):
     branches = BranchData.objects.all()
     date_list = scan_basedir()
-    print(date_list)
     context = {
         'title': 'Ui page',
         'branches': branches,
