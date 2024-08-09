@@ -1,0 +1,17 @@
+<p>Выбрать файл для расчета из архива</p>
+
+<form id="datetime-container">
+
+    <label for="date-input">Дата:</label>
+    <input type="date" id="date-input" name="date-input">
+
+    <label for="time-input">Время:</label>
+    <input type="time" id="time-input" name="time-input">
+
+    <button type="submit">Confirm</button>
+
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+</form>
+
+<p id="datetime-msg"></p>
