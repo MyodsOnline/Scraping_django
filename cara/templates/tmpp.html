@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            {% include 'includes/header.html' %}
+        </header>
+        <main>
+            <nav>
+                <div class="date_time_select_block">
+                    {% include 'includes/datetime_select.html' %}
+                </div>
+                <div class="buttons_block">
+                    <button class="styled secondary" type="button">Задать потребление ЭС</button>
+                    <button class="styled primary" type="button">Перейти к выбору АП</button>
+                </div>
+            </nav>
+            <div class="svg_scheme">
+                <svg width="200" height="200" viewBox="-100 -100 200 200">
+                    <polygon points="0,0 80,120 -80,120" fill="#234236" />
+                    <polygon points="0,-40 60,60 -60,60" fill="#0C5C4C" />
+                    <polygon points="0,-80 40,0 -40,0" fill="#38755B" />
+                    <rect x="-20" y="120" width="40" height="30" fill="brown" />
+                  </svg>
+            </div>
+        </main>
+    </div>
+    <div class="info">
+        <p id="datetime-msg"></p>
+    </div>
+    <script src="{% static 'js/context_datetime.js' %}"></script>
+</body>
+</html>

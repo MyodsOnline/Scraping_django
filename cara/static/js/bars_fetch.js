@@ -1,10 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('datetime-container').addEventListener('submit', function(event) {
+    // Находим кнопку Confirm и добавляем ей обработчик события click
+    const confirmButton = document.querySelector('#datetime-container button[type="submit"]');
+
+    confirmButton.addEventListener('click', function(event) {
         event.preventDefault();
 
-        let date = document.getElementById('date-input').value;
-        let time = document.getElementById('time-input').value;
-        let csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+        let target_datetime = document.getElementById('target-datetime').value;
+        let csrfTokenElement = document.querySelector('input[name="csrfmiddlewaretoken"]');
+        let csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
+
+        if (!csrfToken) {
+            document.getElementById('datetime-msg').textContent = 'CSRF token не найден.';
+            return;
+        }
 
         fetch('/cara/bars_fetch/', {
             method: 'POST',
@@ -13,15 +21,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 'X-CSRFToken': csrfToken
             },
             body: new URLSearchParams({
-                'date-input': date,
-                'time-input': time
+                'target_datetime': target_datetime
             })
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ошибка сети');
+            }
+            return response.json(); // Проверяем, что ответ в формате JSON
+        })
         .then(data => {
             document.getElementById('datetime-msg').textContent = data.message;
         })
         .catch(error => {
+            console.error('Ошибка:', error);
             document.getElementById('datetime-msg').textContent = 'Произошла ошибка при открытии файла.';
         });
     });
