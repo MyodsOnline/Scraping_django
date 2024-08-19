@@ -43,6 +43,13 @@ function executeCopyFileLogic() {
     let csrfTokenElement = document.querySelector('input[name="csrfmiddlewaretoken"]');
     let csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
 
+    const closeButton = document.getElementById('close-info');
+    const infoBlock = document.getElementById('info');
+
+    closeButton.addEventListener('click', function() {
+        infoBlock.style.display = 'none';
+    });
+
     if (!csrfToken) {
         document.getElementById('datetime-msg').textContent = 'CSRF token не найден.';
         return;
@@ -66,9 +73,30 @@ function executeCopyFileLogic() {
     })
     .then(data => {
         document.getElementById('datetime-msg').textContent = data.message;
+        infoBlock.style.display = 'block';
     })
     .catch(error => {
         console.error('Ошибка:', error);
         document.getElementById('datetime-msg').textContent = 'Произошла ошибка при открытии файла.';
+        infoBlock.style.display = 'block';
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const closeButton = document.getElementById('close-info');
+    const infoBlock = document.getElementById('info');
+
+    closeButton.addEventListener('click', function() {
+        infoBlock.style.display = 'none';
+    });
+});
+
+const element = document.getElementById('graph')
+const panzoom = Panzoom(element, {
+    maxScale: 7,
+    minScale: 1,
+    cursor: 'auto'
+});
+const parent = element.parentElement;
+
+parent.addEventListener('wheel', panzoom.zoomWithWheel);
