@@ -5,6 +5,7 @@ from .forms import SelOffEls
 from .models import BranchData
 from .extraction_util.walk_dir import scan_basedir
 from .utils import data_scan, time_scan
+from .svg_module.expotr_svg import return_svg_from_file
 
 
 def main_page(request):
@@ -55,8 +56,13 @@ def bars_page(request):
 
 
 def base_page(request):
+    try:
+        svg_data = return_svg_from_file('output.svg')
+    except FileNotFoundError:
+        svg_data = f'Source is empty'
     context = {
         'title': 'Base page',
+        'svg_data': svg_data,
     }
     return render(request, 'tmpp.html', context=context)
 
