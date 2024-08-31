@@ -45,6 +45,15 @@ def ui_page(request):
     return render(request, 'ui.html', context=context)
 
 
+def bars_page(request):
+    branches = BranchData.objects.all()
+    context = {
+        'title': 'Ui page',
+        'branches': branches,
+    }
+    return render(request, 'bars.html', context=context)
+
+
 def av_page(request):
     selected_name = request.GET.get('selected_name')
     try:
