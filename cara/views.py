@@ -48,10 +48,17 @@ def ui_page(request):
 def bars_page(request):
     branches = BranchData.objects.all()
     context = {
-        'title': 'Ui page',
+        'title': 'Bars page',
         'branches': branches,
     }
     return render(request, 'bars.html', context=context)
+
+
+def base_page(request):
+    context = {
+        'title': 'Base page',
+    }
+    return render(request, 'tmpp.html', context=context)
 
 
 def av_page(request):
