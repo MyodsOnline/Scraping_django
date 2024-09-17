@@ -1,15 +1,15 @@
 // блок взаимодействия элементов схемы с полем input и окрашивание элементов
 document.addEventListener('DOMContentLoaded', () => {
     // установка переменных для взаимодействия со схемой
-    const inputStatus = document.getElementById('input_status');
+    const inputVetvStatus = document.getElementById('input_status'); //inputStatus
     const selectedIds = new Set();
     const originalStrokes = new Map();
     const parentVetvId = 'vetvs';
     const parentNodeId = 'nodes';
 
     // добавление/удаление элементов в поле input
-    function updateInputStatus() {
-        inputStatus.value = Array.from(selectedIds).join(', ');
+    function updateVetvInputStatus() {
+        inputVetvStatus.value = Array.from(selectedIds).join(', ');
     }
 
     // выбор элемента по клику, изменение окраски элемента
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 path.setAttribute('stroke', 'rgb(255, 0, 0)');
             });
         }
-        updateInputStatus();
+        updateVetvInputStatus();
     }
 
     // добавляем клики для каждого элемента g

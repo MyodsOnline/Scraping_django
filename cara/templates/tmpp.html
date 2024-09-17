@@ -18,8 +18,13 @@
                     {% include 'includes/datetime_select.html' %}
                 </div>
                 <div class="buttons_block">
-                    <button class="styled secondary" type="button">Задать потребление ЭС</button>
-                    <button class="styled primary" type="button">Перейти к выбору АП</button>
+                    <form method="POST" action="{% url 'cara:process_data' %}">
+                        {% csrf_token %}
+                        <input id="input_status" name="set_data" value="" type="hidden">
+                        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                        <button class="styled secondary" type="button">Задать потребление ЭС</button>
+                        <button class="styled primary" type="submit">Подтвердить</button>
+                    </form>
                 </div>
             </nav>
             <div id="svg_content">
@@ -29,6 +34,7 @@
             </div>
         </main>
     </div>
+
     <div id="info" style="display: none;">
         <span id="close-info" style="cursor: pointer; font-weight: bold;">&times;</span>
         <p id="datetime-msg"></p>
