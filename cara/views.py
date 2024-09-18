@@ -71,17 +71,20 @@ def process_data(request):
     results = []
     if request.method == 'POST':
         data = request.POST.get('set_data', '')
-        for item in data.split(','):
-            item = item.strip()
-            if '__' in item:
-                ip, iq = item.split('__')
-                vetv_data = Vetv.objects.filter(
-                    start=ip.replace('ip_', ''),
-                    end=iq.replace('iq_', '')).values()
-                results.extend(list(vetv_data))
-            else:
-                node_data = Node.objects.filter(number=item.replace('ny_', '')).values()
-                results.extend(list(node_data))
+        if data:
+            for item in data.split(','):
+                item = item.strip()
+                if '__' in item:
+                    ip, iq = item.split('__')
+                    vetv_data = Vetv.objects.filter(
+                        start=ip.replace('ip_', ''),
+                        end=iq.replace('iq_', '')).values()
+                    results.extend(list(vetv_data))
+                else:
+                    node_data = Node.objects.filter(number=item.replace('ny_', '')).values()
+                    results.extend(list(node_data))
+        else:
+            results.append('Nothing to change')
 
     return render(request, 'tеmpp.html', {'title': 'Base page', 'results': results})
 

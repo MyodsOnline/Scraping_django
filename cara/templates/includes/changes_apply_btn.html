@@ -1,0 +1,6 @@
+<form method="POST" action="{% url 'cara:process_data' %}">
+    {% csrf_token %}
+    <input id="input_status" name="set_data" value="" type="hidden">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    <button class="styled primary" type="submit">Подтвердить</button>
+</form>
