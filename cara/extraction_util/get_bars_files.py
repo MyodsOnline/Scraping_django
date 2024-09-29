@@ -53,7 +53,7 @@ def find_bars_file(directory_name, file_name):
 
 def copy_file_to_work_dir(file_path) -> str:
     try:
-        destination_file_path = os.path.join(WORKDIR_PATH, "bars_file.os")
+        destination_file_path = os.path.join(WORKDIR_PATH, "work_file")
         shutil.copyfile(file_path, destination_file_path)
         with open(destination_file_path, 'w', encoding='utf-8') as file:
             file.write(f'{file_path}')
