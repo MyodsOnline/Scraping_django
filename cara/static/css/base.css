@@ -228,3 +228,23 @@ button:first-child {
 path:hover, rect:hover {
     cursor: pointer;
 }
+
+/* Стили для контекстного меню */
+#context-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+    z-index: 1000;
+}
+
+#context-menu button {
+    display: block;
+    margin: 5px 0;
+}
+
+#context-menu button:disabled {
+    color: #aaa;
+}

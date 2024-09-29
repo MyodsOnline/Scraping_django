@@ -17,5 +17,5 @@ urlpatterns = [
     path('base/', base_page, name='base'),
     path('bars/', bars_page, name='bars'),
     path('bars_fetch/', get_target_datetime, name='bars_fetch'),
-    path('process_data/', process_data, name='process_data'),  # Новый маршрут
+    path('process_data/', process_data, name='process_data'),
 ]
