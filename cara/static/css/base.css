@@ -117,7 +117,7 @@ button:first-child {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
-#svg_scheme {
+#svg_content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -221,5 +221,10 @@ button:first-child {
     top: 0px;
     right: 7px;
     font-size: 20px;
+    cursor: pointer;
+}
+
+/* блок стилей svg */
+path:hover, rect:hover {
     cursor: pointer;
 }

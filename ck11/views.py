@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db import transaction
 from .models import UIDMapping
 from .utils.expotr_svg import return_svg_from_file
 from .utils.get_pbr_api import get_pbr_get_table_ck11, get_local_uid_list
