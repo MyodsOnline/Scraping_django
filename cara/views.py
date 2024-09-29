@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.http import JsonResponse
 
 from .forms import SelOffEls
-from .models import BranchData
+from .models import BranchData, Vetv, Node
 from .extraction_util.walk_dir import scan_basedir
 from .utils import data_scan, time_scan
+from .svg_module.expotr_svg import return_svg_from_file
 
 
 def main_page(request):
@@ -55,10 +56,37 @@ def bars_page(request):
 
 
 def base_page(request):
+    try:
+        svg_data = return_svg_from_file('output_mod.svg')
+    except FileNotFoundError:
+        svg_data = f'Source is empty'
     context = {
         'title': 'Base page',
+        'svg_data': svg_data,
     }
     return render(request, 'tmpp.html', context=context)
+
+
+def process_data(request):
+    results = []
+    if request.method == 'POST':
+        data = request.POST.get('set_data', '')
+        if data:
+            for item in data.split(','):
+                item = item.strip()
+                if '__' in item:
+                    ip, iq = item.split('__')
+                    vetv_data = Vetv.objects.filter(
+                        start=ip.replace('ip_', ''),
+                        end=iq.replace('iq_', '')).values()
+                    results.extend(list(vetv_data))
+                else:
+                    node_data = Node.objects.filter(number=item.replace('ny_', '')).values()
+                    results.extend(list(node_data))
+        else:
+            results.append('Nothing to change')
+
+    return render(request, 'tеmpp.html', {'title': 'Base page', 'results': results})
 
 
 def av_page(request):

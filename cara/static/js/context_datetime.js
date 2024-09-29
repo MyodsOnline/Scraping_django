@@ -1,3 +1,16 @@
+// блок настройки отображения svg схемы с библиотекой Panzoom
+const element = document.getElementById('scheme')
+const panzoom = Panzoom(element, {
+    maxScale: 7,
+    minScale: 1,
+    cursor: 'auto'
+});
+const parent = element.parentElement;
+
+parent.addEventListener('wheel', panzoom.zoomWithWheel);
+
+
+// блок выбора даты и времени среза расчета
 document.addEventListener('DOMContentLoaded', function() {
     const calendarIcon = document.querySelector('.calendar-icon');
     const modal = document.getElementById('datetime-modal');
@@ -90,13 +103,3 @@ document.addEventListener('DOMContentLoaded', function() {
         infoBlock.style.display = 'none';
     });
 });
-
-const element = document.getElementById('graph')
-const panzoom = Panzoom(element, {
-    maxScale: 7,
-    minScale: 1,
-    cursor: 'auto'
-});
-const parent = element.parentElement;
-
-parent.addEventListener('wheel', panzoom.zoomWithWheel);

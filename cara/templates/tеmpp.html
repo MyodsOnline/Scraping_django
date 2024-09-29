@@ -1,0 +1,15 @@
+{% load static %}
+{% if results %}
+        <div id="result">
+            <h2>Результаты:</h2>
+            <ul>
+                {% for item in results %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+    <h1>Нет данных</h1>
+    {% endif %}</br>
+{{ data }}</br>
+{{ vetv_data }}
