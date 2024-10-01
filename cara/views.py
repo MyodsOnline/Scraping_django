@@ -3,7 +3,7 @@ from django.http import JsonResponse
 
 from .forms import SelOffEls
 from .models import BranchData, Vetv, Node
-from .extraction_util.walk_dir import scan_basedir
+from .extraction_util.walk_dir import scan_basedir, get_SMZU_file
 from .utils import data_scan, time_scan
 from .svg_module.expotr_svg import return_svg_from_file
 
@@ -60,8 +60,11 @@ def base_page(request):
         svg_data = return_svg_from_file('output_mod.svg')
     except FileNotFoundError:
         svg_data = f'Source is empty'
+    smzu_file_name = get_SMZU_file()
+
     context = {
         'title': 'Base page',
+        'smzu_file_name': smzu_file_name,
         'svg_data': svg_data,
     }
     return render(request, 'tmpp.html', context=context)

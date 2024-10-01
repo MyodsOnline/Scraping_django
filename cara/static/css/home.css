@@ -57,11 +57,13 @@ h3 {
     height: 200px;
     justify-content: center;
     border-radius: 0 0 5px 5px;
+    padding: 10px 10px 0px;
 }
 
 .buttons a, button {
-    margin: 10px auto;
+    margin: 0 auto;
     padding: 7px 27px;
+    margin-bottom: 10px;
     cursor: pointer;
     background-color: rgba(237, 238, 242, .9);
     width: 60%;

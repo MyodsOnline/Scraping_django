@@ -1,5 +1,6 @@
 import os
 import shutil
+from datetime import datetime
 
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
@@ -16,6 +17,70 @@ if TEST:
 
 else:
     BASE_PATH = r"\\srv-smzu2-sz\CFRAS\FilesRegim\Good"
+
+
+def get_SMZU_file() -> str:
+    """
+    Функция создает копию файла mdp_debug_0 в WORKDIR_PATH
+    :return: строка формата YYYY-MM-DDTHH:MM для использования в html шаблоне
+    """
+
+    # получаем текущую дату и время для поиска ближайшего файла расчета
+    current_datetime = datetime.now()
+
+    # сканируем родительский каталог для поиска папки с датой, ближайшей к текущей
+    date_dirs = [d for d in os.listdir(BASE_PATH) if os.path.isdir(os.path.join(BASE_PATH, d))]
+    date_dirs = sorted(date_dirs, reverse=True)
+    closest_date_dir = None
+
+    for date_dir in date_dirs:
+        try:
+            date_obj = datetime.strptime(date_dir, '%Y_%m_%d')
+            if date_obj <= current_datetime:
+                closest_date_dir = date_dir
+                break
+        except ValueError:
+            continue
+
+    # продумать вариант с базовым шаблоном, чтобы не крашить программу
+    if not closest_date_dir:
+        raise Exception("Нет подходящей папки с датой")
+
+    # сканируем полученную ранее директорию для поиска последней по времени папки
+    time_dir_path = os.path.join(BASE_PATH, closest_date_dir)
+    time_dirs = [d for d in os.listdir(time_dir_path) if os.path.isdir(os.path.join(time_dir_path, d))]
+    closest_time_dir = None
+    min_time_diff = None
+
+    for time_dir in time_dirs:
+        try:
+            time_obj = datetime.strptime(time_dir, '%H_%M_%S').time()
+            full_time = datetime.combine(datetime.strptime(closest_date_dir, '%Y_%m_%d').date(), time_obj)
+            time_diff = abs((full_time - current_datetime).total_seconds())
+
+            if min_time_diff is None or time_diff < min_time_diff:
+                min_time_diff = time_diff
+                closest_time_dir = time_dir
+        except ValueError:
+            continue
+
+    if not closest_time_dir:
+        raise Exception("Нет подходящей папки со временем")
+
+    # копируем искомый файл в заданный путь, меняем название на work_file
+    source_file_path = os.path.join(time_dir_path, closest_time_dir, 'mdp_debug_0')
+    if not os.path.isfile(source_file_path):
+        raise FileNotFoundError(f"Файл mdp_debug_0 не найден в {source_file_path}")
+
+    destination_file_path = os.path.join(WORKDIR_PATH, 'work_file')
+    shutil.copy2(source_file_path, destination_file_path)
+
+    # получаем строку для использования в html шаблоне
+    date_part = closest_date_dir.replace('_', '-')
+    time_part = closest_time_dir[:5].replace('_', ':')
+    result_str = f"{date_part}T{time_part}"
+
+    return result_str
 
 
 def scan_basedir() -> list:
@@ -114,4 +179,4 @@ def clear_directory() -> None:
 
 
 if __name__ == '__main__':
-    clear_directory()
+    get_SMZU_file()
