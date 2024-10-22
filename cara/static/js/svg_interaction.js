@@ -1,15 +1,45 @@
-// блок взаимодействия элементов схемы с полем input и окрашивание элементов
+// блок настройки отображения svg схемы с библиотекой Panzoom
+const element = document.getElementById('scheme')
+const panzoom = Panzoom(element, {
+    maxScale: 7,
+    minScale: 1,
+    cursor: 'auto'
+});
+// Возможность использовать мышь для масштабирования
+element.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
+// Обработчик кнопки сброса масштабирования и перемещения
+document.getElementById('to_home').addEventListener('click', function () {
+    panzoom.reset();
+});
+
+
+// блок взаимодействия элементов схемы svg с полем input и окрашивание элементов
 document.addEventListener('DOMContentLoaded', () => {
     // установка переменных для взаимодействия со схемой
-    const inputVetvStatus = document.getElementById('input_status'); //inputStatus
+    const inputElementStatus = document.getElementById('input_status'); // hidden элемент, value передаем на поиск в БД
+    const selectedElements = document.getElementById('selected_elements'); // блок для отображения на фронте
+    const selectedElementsList = document.getElementById('selected_elements_list'); // массив измененных элементов
+    const toInfoElement = document.getElementById('to_info') // включение/отключение отображения по клику
+    const selectedElementsDelete = document.getElementById('selected_elements_delete')
     const selectedIds = new Set();
     const originalStrokes = new Map();
     const parentVetvId = 'vetvs';
     const parentNodeId = 'nodes';
 
     // добавление/удаление элементов в поле input
-    function updateVetvInputStatus() {
-        inputVetvStatus.value = Array.from(selectedIds).join(', ');
+    function updateElementInputStatus() {
+        inputElementStatus.value = Array.from(selectedIds).join(', ');
+        // Оборачиваем каждое значение в тег <span>
+        const spanElements = Array.from(selectedIds).map(id => `<span class="element">${id}</span>`).join(' ');
+        // Добавляем строки с <span> в элемент <p>
+        selectedElementsList.innerHTML = spanElements;
+        // Проверяем, есть ли элементы в inputElementStatus для присвоения класса
+        if (inputElementStatus.value.length > 0) {
+            toInfoElement.classList.add('colored');
+        } else {
+            toInfoElement.classList.remove('colored');
+            selectedElements.style.display = "none";
+        }
     }
 
     // выбор элемента по клику, изменение окраски элемента
@@ -32,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 path.setAttribute('stroke', 'rgb(255, 0, 0)');
             });
         }
-        updateVetvInputStatus();
+        updateElementInputStatus();
     }
 
     // добавляем клики для каждого элемента g
@@ -43,5 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleSelection(element);
             }
         });
+    });
+
+    // отобразить/скрыть список элементов
+    toInfoElement.addEventListener('click', function() {
+        if (toInfoElement.classList.contains('colored')) {
+        // Проверяем текущее состояние элемента и переключаем видимость
+            if (selectedElements.style.display === "none" || selectedElements.style.display === "") {
+                selectedElements.style.display = "block";
+            } else {
+                selectedElements.style.display = "none";
+            }
+        }
+    });
+
+    selectedElementsDelete.addEventListener('click', function() {
+        location.reload()
     });
 });

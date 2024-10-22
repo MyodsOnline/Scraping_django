@@ -1,18 +1,6 @@
-// блок настройки отображения svg схемы с библиотекой Panzoom
-const element = document.getElementById('scheme')
-const panzoom = Panzoom(element, {
-    maxScale: 7,
-    minScale: 1,
-    cursor: 'auto'
-});
-const parent = element.parentElement;
-
-parent.addEventListener('wheel', panzoom.zoomWithWheel);
-
-
 // блок выбора даты и времени среза расчета
 document.addEventListener('DOMContentLoaded', function() {
-    const calendarIcon = document.querySelector('.calendar-icon');
+    const calendarIcon = document.querySelector('.datetime-wrapper');
     const modal = document.getElementById('datetime-modal');
     const saveButton = document.getElementById('save-datetime');
     const cancelButton = document.getElementById('cancel-datetime');
@@ -26,23 +14,18 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = 'flex';
         originalValue = modalDatetime.value = datetimeInput.value;
     });
-
-    // Сохранение изменений и выполнение кода copy_file.js
+    // Сохранение изменений и выполнение кода
     saveButton.addEventListener('click', function(event) {
         event.preventDefault();
-
         // Проверяем, было ли изменено значение
         if (modalDatetime.value !== originalValue) {
             datetimeInput.value = modalDatetime.value;
             modal.style.display = 'none';
-
-            // Выполнение кода из copy_file.js
             executeCopyFileLogic();
         } else {
             modal.style.display = 'none';
         }
     });
-
     // Закрытие модального окна без сохранения
     cancelButton.addEventListener('click', function(event) {
         event.preventDefault();
@@ -50,15 +33,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
 // Функция для выполнения логики из copy_file.js
 function executeCopyFileLogic() {
-    let target_datetime = document.getElementById('target-datetime').value;
-    let csrfTokenElement = document.querySelector('input[name="csrfmiddlewaretoken"]');
-    let csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
-
+    const target_datetime = document.getElementById('target-datetime').value;
     const closeButton = document.getElementById('close-info');
     const infoBlock = document.getElementById('info');
 
+    let csrfTokenElement = document.querySelector('input[name="csrfmiddlewaretoken"]');
+    let csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
+
+    // закрытие модального окна уведомлений
     closeButton.addEventListener('click', function() {
         infoBlock.style.display = 'none';
     });
@@ -82,7 +67,7 @@ function executeCopyFileLogic() {
         if (!response.ok) {
             throw new Error('Ошибка сети');
         }
-        return response.json(); // Проверяем, что ответ в формате JSON
+        return response.json();
     })
     .then(data => {
         document.getElementById('datetime-msg').textContent = data.message;
@@ -94,12 +79,3 @@ function executeCopyFileLogic() {
         infoBlock.style.display = 'block';
     });
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const closeButton = document.getElementById('close-info');
-    const infoBlock = document.getElementById('info');
-
-    closeButton.addEventListener('click', function() {
-        infoBlock.style.display = 'none';
-    });
-});
