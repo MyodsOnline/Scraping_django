@@ -33,15 +33,26 @@ header a:hover {
     text-decoration: underline;
 }
 
+main {
+    display: flex;
+    padding: 10px 35px 20px;
+    flex-direction: column;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 10px;
+}
+
+section {
+    display: flex;
+    position: relative;
 }
 
 .date_time_select_block, .buttons_block {
     display: flex;
-    padding: 10px 45px;
 }
 
 .datetime-container {
@@ -54,15 +65,17 @@ nav {
     align-items: baseline;
 }
 
+/*
 .datetime-icon {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 10px; /* Расстояние от правого края input */
-    pointer-events: none; /* Чтобы иконка не мешала кликам на input */
+    right: 10px;
+    pointer-events: none;
     color: gray;
-    font-size: 1.2em; /* Размер иконки */
+    font-size: 1.2em;
 }
+*/
 
 #datetime-select {
     background-color: rgb(43, 46, 51);
@@ -122,17 +135,20 @@ nav {
     align-items: center;
     justify-content: center;
     box-shadow: inset 2px 2px 3px rgba(35, 39, 42, 0.8);
-    margin: 0 45px;
     border-radius: 7px;
     background-color: black;
-    height: calc(100vh - 170px);
+    height: calc(100vh - 150px);
     background: linear-gradient( 90deg, white 50%, transparent 50%);
     background-size: 1em 1em;
-    background-color: black;
 }
 
 #scheme {
     background: black;
+    cursor: auto;
+    touch-action: none;
+    transform-origin: 50% 50%;
+    transition: transform 200ms ease-in-out;
+    transform: scale(0.35) translate(0, 45vh);
 }
 
 #scheme_buttons {
@@ -140,8 +156,8 @@ nav {
     position: absolute;
     flex-direction: column;
     z-index: 2;
-    top: 121px;
-    left: 45px;
+    top: 0;
+    right: 0;
 }
 
 .scheme_buttons_style {
@@ -162,8 +178,10 @@ nav {
     position: absolute;
     display: none;
     z-index: 3;
-    top: 132px;
-    left: 119px;
+    margin: 10px;
+    width: 300px;
+    top: 0;
+    right: 60px;
     padding: 4px;
     border-radius: 7px;
     background-color: rgba(43, 46, 51, .8);
@@ -225,7 +243,7 @@ nav {
     color: rgba(255, 255, 255, 0.87);
     border-radius: 7px;
     border: 0;
-    padding: 9px 40px 9px 10px;
+    padding: 9px 30px 9px 10px;
     font-weight: 100;
     cursor: pointer;
 }
@@ -237,8 +255,8 @@ nav {
 
 .calendar-icon {
     position: absolute;
-    top: 50%;
-    right: 20px;
+    top: 54%;
+    right: 10px;
     transform: translateY(-50%);
     color: gray;
 }
@@ -301,4 +319,52 @@ nav {
 /* блок стилей svg */
 path:hover, rect:hover {
     cursor: pointer;
+}
+
+/* блок tooltip */
+.tooltiptext {
+    visibility: hidden;
+    width: 130px;
+    font-size: 14px;
+    background-color: rgba(55, 60, 67, .8);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.1s;
+    color: rgba(181, 187, 196, 1);
+}
+
+.scheme_buttons_style .tooltiptext {
+    left: 25px;
+}
+
+.tooltiptext.second {
+    bottom: 120px;
+}
+
+.tooltiptext.third {
+    bottom: 65px;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(55, 60, 67, 1) transparent transparent transparent;
+}
+
+.datetime-wrapper:hover .tooltiptext,
+.scheme_buttons_style:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }

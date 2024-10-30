@@ -57,7 +57,7 @@ def bars_page(request):
 
 def base_page(request):
     try:
-        svg_data = return_svg_from_file('output_mod.svg')
+        svg_data = return_svg_from_file('new_svg.svg')
     except FileNotFoundError:
         svg_data = f'Source is empty'
     smzu_file_name = get_SMZU_file()
@@ -67,7 +67,7 @@ def base_page(request):
         'smzu_file_name': smzu_file_name,
         'svg_data': svg_data,
     }
-    return render(request, 'tmpp.html', context=context)
+    return render(request, 'base_index.html', context=context)
 
 
 def process_data(request):
