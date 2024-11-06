@@ -1,14 +1,15 @@
 <div id="scheme_buttons">
-    <button id="to_info" class="scheme_buttons_style">
+    <div id="to_info" class="scheme_buttons_style">
         {% include 'includes/svg_buttons/info_icon.html' %}
         <span class="tooltiptext">Список изменений</span>
-    </button>
-    <button id="to_consumption" class="scheme_buttons_style">
+        {% include 'includes/description.html' %}
+    </div>
+    <div id="to_consumption" class="scheme_buttons_style">
         {% include 'includes/svg_buttons/consumption_icon.html' %}
         <span class="tooltiptext second">Задать потребление</span>
-    </button>
-    <button id="to_home" class="scheme_buttons_style">
+    </div>
+    <div id="to_home" class="scheme_buttons_style">
         {% include 'includes/svg_buttons/center_icon.html' %}
         <span class="tooltiptext third">Центрировать схему</span>
-    </button>
+    </div>
 </div>

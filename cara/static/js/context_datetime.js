@@ -90,3 +90,14 @@ function executeCopyFileLogic() {
         infoBlock.style.display = 'block';
     });
 }
+
+document.getElementById("to_info").addEventListener("click", function() {
+    const selectedElements = document.getElementById("selected_elements");
+
+    // Проверяем текущее значение свойства visibility и переключаем его
+    if (selectedElements.style.visibility === "visible") {
+        selectedElements.style.visibility = "hidden";
+    } else {
+        selectedElements.style.visibility = "visible";
+    }
+});

@@ -215,15 +215,28 @@ section {
 }
 
 .scheme_buttons_style .tooltiptext {
-    left: 35px;
+    bottom: 55px;
 }
 
-.tooltiptext.second {
-    bottom: 117px;
+.description {
+    position: absolute;
+    left: -10px;
+    top: 0;
+    transform: translate(-100%);
+    background: rgba(35, 39, 43, 1);
+    padding: 15px;
+    color: white;
+    font-weight: 100;
+    width: max-content;
+    border-radius: 7px;
 }
 
-.tooltiptext.third {
-    bottom: 57px;
+#selected_elements_apply {
+    margin-top: 15px;
+}
+
+#selected_elements {
+    visibility: hidden;
 }
 
 .tooltiptext::after {
@@ -253,6 +266,10 @@ section {
 }
 
 .scheme_buttons_style {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 50px;
     margin: 10px 10px 0px 10px;
