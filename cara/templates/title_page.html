@@ -1,0 +1,18 @@
+{% extends "base_page.html" %}
+{% load static %}
+
+{% block header %}
+    {% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block main_content %}
+    {% include 'includes/navigation.html' %}
+    {% include 'includes/svg_content.html' %}
+    {% include 'includes/scheme_buttons.html' %}
+    {% include 'includes/notification.html' %}
+{% endblock main_content %}
+
+{% block js_scripts %}
+    <script src="{% static 'js/panzoom_control.js' %}"></script>
+    <script src="{% static 'js/context_datetime.js' %}"></script>
+{% endblock js_scripts %}

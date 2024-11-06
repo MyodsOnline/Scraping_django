@@ -33,12 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-// Функция для выполнения логики из copy_file.js
 function executeCopyFileLogic() {
     const target_datetime = document.getElementById('target-datetime').value;
     const closeButton = document.getElementById('close-info');
     const infoBlock = document.getElementById('info');
+    const statusElement = document.getElementById("status-msg");
 
     let csrfTokenElement = document.querySelector('input[name="csrfmiddlewaretoken"]');
     let csrfToken = csrfTokenElement ? csrfTokenElement.value : '';
@@ -71,7 +70,19 @@ function executeCopyFileLogic() {
     })
     .then(data => {
         document.getElementById('datetime-msg').textContent = data.message;
-        infoBlock.style.display = 'block';
+        infoBlock.style.display = 'flex';
+        console.log(data.status)
+        if (data.status === "error") {
+          infoBlock.style.backgroundColor = "rgba(163, 44, 44, 1)";
+          statusElement.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 14.9902V15.0002" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 5V12" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          `;
+        } else if (data.status === "success") {
+          infoBlock.style.backgroundColor = "rgba(58, 94, 55, 1)";
+          statusElement.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.0001 7L8.00004 14L5 11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          `;
+        }
     })
     .catch(error => {
         console.error('Ошибка:', error);

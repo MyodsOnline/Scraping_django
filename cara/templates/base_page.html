@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link rel="shortcut icon" href="{% static 'icon/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/title_page.css' %}">
+    <script src="{% static 'js/panzoom.js' %}"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            {% block header %}
+            {% endblock header %}
+        </header>
+        <main>
+            {% block main_content %}
+            {% endblock main_content %}
+        </main>
+    </div>
+    {% block js_scripts %}
+    {% endblock js_scripts %}
+</body>
+</html>

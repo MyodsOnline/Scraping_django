@@ -67,7 +67,11 @@ def base_page(request):
         'smzu_file_name': smzu_file_name,
         'svg_data': svg_data,
     }
-    return render(request, 'base_index.html', context=context)
+    switcher = 0
+    if switcher == 0:
+        return render(request, 'title_page.html', context=context)
+    else:
+        return render(request, 'base_index.html', context=context)
 
 
 def process_data(request):

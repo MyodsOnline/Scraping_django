@@ -1,9 +1,33 @@
 <nav>
     <div class="date_time_select_block">
-        {% include 'includes/datetime_select.html' %}
+        <form id="datetime-container">
+            <label for="target-datetime">Дата и время:</label>
+            <div class="datetime-wrapper">
+                <input
+                    type="datetime-local"
+                    id="target-datetime"
+                    name="target-datetime"
+                    value="{{ smzu_file_name }}"
+                    readonly />
+                <span class="calendar-icon">
+                    {% include 'includes/svg_buttons/calendar_icon.html' %}
+                </span>
+                <span class="tooltiptext">Редактировать дату и время</span>
+            </div>
+
+            <div id="datetime-modal" class="modal">
+                <div class="modal-content">
+                    <label for="modal-datetime">Выберите дату и время:</label>
+                    <input type="datetime-local" id="modal-datetime" value="{{ smzu_file_name }}" />
+                    <div class="modal-buttons">
+                        <button id="save-datetime" class="styled primary">Подтвердить</button>
+                        <button id="cancel-datetime" class="styled secondary">Назад</button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
     <div class="buttons_block">
-        <!-- <button class="styled secondary" type="button">Задать потребление ЭС</button> -->
         {% include 'includes/changes_apply_btn.html' %}
     </div>
 </nav>
