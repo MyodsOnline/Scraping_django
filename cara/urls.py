@@ -1,6 +1,8 @@
 from django.urls import path
 
-from .views import main_page, mode_page, home_page, ui_page, av_page, get_times, index, bars_page, base_page, process_data
+from .views import main_page, mode_page, home_page, ui_page, \
+    av_page, get_times, index, bars_page, base_page, \
+    process_data, second_page
 from .extraction_util.walk_dir import get_fetch_response
 from .extraction_util.get_bars_files import get_target_datetime
 
@@ -15,7 +17,8 @@ urlpatterns = [
     path('get_times/', get_times, name='get_times'),
     path('copy_file/', get_fetch_response, name='copy_file'),
     path('base/', base_page, name='base'),
+    path('ap/', second_page, name='ap'),
     path('bars/', bars_page, name='bars'),
     path('bars_fetch/', get_target_datetime, name='bars_fetch'),
-    path('process_data/', process_data, name='process_data'),  # Новый маршрут
+    path('process_data/', process_data, name='process_data'),
 ]

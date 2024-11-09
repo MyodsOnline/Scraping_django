@@ -18,7 +18,20 @@ if TEST:
 @csrf_exempt
 def get_target_datetime(request):
     """
-    Функция получает дату и время из fetch-запроса
+    Обрабатывает POST-запрос, извлекает целевую дату и время, преобразует их в нужный формат
+    и ищет соответствующий файл в заданной директории.
+
+    Info:
+        - Получает дату и время из параметров POST-запроса.
+        - Преобразует дату и время в строковый формат для формирования имени директории и файла.
+        - Вызывает функцию `find_bars_file` для поиска файла в соответствующей директории.
+        - Возвращает JSON-ответ с сообщением о результате поиска.
+
+    Args:
+        request (HttpRequest): Объект HTTP-запроса, содержащий данные POST-запроса.
+
+    Returns:
+        JsonResponse: Ответ в формате JSON с ключом 'message', содержащим результат поиска файла.
     """
     target_datetime = request.POST.get('target_datetime')
     dt = datetime.strptime(target_datetime, "%Y-%m-%dT%H:%M")
@@ -31,10 +44,27 @@ def get_target_datetime(request):
     # поиск файла в директории
     message = find_bars_file(directory_name, file_name)
 
-    return JsonResponse({'message': message})
+    if "Возникла ошибка" in message:
+        return JsonResponse({"status": "error", "message": message})
+    else:
+        return JsonResponse({"status": "success", "message": message})
 
 
-def find_bars_file(directory_name, file_name):
+def find_bars_file(directory_name: str, file_name: str) -> str:
+    """
+    Ищет указанный файл в заданной директории, проверяет его существование и копирует его в рабочую директорию.
+
+    Args:
+        directory_name (str): Имя папки, в которой следует искать файл.
+        file_name (str): Имя файла, который нужно найти.
+
+    Returns:
+        str: Путь к скопированному файлу, если файл успешно найден и скопирован.
+        str: Сообщение об ошибке, если директория или файл не найдены.
+
+    Raises:
+        FileNotFoundError: Возникает, если указанный каталог или файл отсутствуют.
+    """
     try:
         target_dir = os.path.join(BASE_PATH, directory_name)
         if not os.path.exists(target_dir) or not os.path.isdir(target_dir):

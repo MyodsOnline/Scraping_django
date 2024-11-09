@@ -1,0 +1,91 @@
+{% extends "base_page.html" %}
+{% load static %}
+
+{% block local_css %}
+<link rel="stylesheet" href="{% static 'css/second_page.css' %}">
+{% endblock local_css %}
+
+{% block header %}
+    {% include 'includes/header.html' %}
+{% endblock header %}
+
+{% block main_content %}
+    <div class="ap_grid">
+        {% include 'includes/svg_content.html' %}
+        <div id="ap_constructor">
+            <ul id="ap_elements">
+                <li element_name="pass" class="ap_element">
+                    <div class="element_name">
+                        {% include 'includes/svg_buttons/minimise.html' %}
+                        <p>ВЛ 330 кВ Киришская ГРЭС - Восточная 1 цепь</p>
+                    </div>
+                    <ul class="ap_element_list">
+                        <li class="all_aps">
+                            <input type="checkbox" checked>
+                            <p><strong>Отметить все АП</strong></p>
+                        </li>
+                        <hr />
+                        <li class="single_ap">
+                            <input type="checkbox" checked>
+                            <p>Откл ВЛ 330 кВ Киришская ГРЭС - Восточная 1 цепь</p>
+                        </li>
+                        <li class="single_ap">
+                            <input type="checkbox" checked>
+                            <p>Откл со стороны Киришская ГРЭС</p>
+                        </li>
+                        <li class="single_ap">
+                            <input type="checkbox" checked>
+                            <p>УРОВ Выкл. ПС 330 кВ Восточная (Присоед. Кириши-Восточн. 2 ц- Присоед. Восточн-Ржевск. 2 ц)</p>
+                        </li>
+                    </ul>
+                </li>
+                <li element_name="pass" class="ap_element">
+                    <div class="element_name">
+                        {% include 'includes/svg_buttons/minimise.html' %}
+                        <p>ВЛ 220 кВ Верхне-Свирская ГЭС - Сясь с отпайками</p>
+                    </div>
+                    <ul class="ap_element_list">
+                        <li class="all_aps">
+                            <input type="checkbox" checked>
+                            <p><strong>Отметить все АП</strong></p>
+                        </li>
+                        <hr />
+                        <li class="single_ap">
+                            <input type="checkbox" checked>
+                            <p>Откл ВЛ 330 кВ Киришская ГРЭС - Восточная 1 цепь</p>
+                        </li>
+                        <li class="single_ap">
+                            <input type="checkbox" checked>
+                            <p>Откл со стороны Киришская ГРЭС</p>
+                        </li>
+                        <li class="single_ap">
+                            <input type="checkbox" checked>
+                            <p>УРОВ Выкл. ПС 330 кВ Восточная (Присоед. Кириши-Восточн. 2 ц- Присоед. Восточн-Ржевск. 2 ц)</p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div id="ap_options">
+                <p>Опции расчета</p>
+                <div class="options_calc">
+                    <label for="cyclic_calc">Цикличный расчет</label>
+                    <input type="checkbox" name="cyclic_calc" id="cyclic_calc" />
+                </div>
+                <div class="options_calc">
+                    <label for="automatic_calc">Расчет без ПА</label>
+                    <input type="checkbox" name="automatic_calc" id="automatic_calc" />
+                </div>
+                <div class="options_temp">
+                    <label for="temp_setter">ТНВ, °С</label>
+                    <input type="number" min="-20" max="30" value="17" id="temp_setter">
+                </div>
+            </div>
+            <button type="submit" id="ap_start" class="styled primary">Рассчитать АП</button>
+        </div>
+    </div>
+{% endblock main_content %}
+
+{% block js_scripts %}
+    <script src="{% static 'js/panzoom_control.js' %}"></script>
+    <script src="{% static 'js/control_elements.js' %}"></script>
+{% endblock js_scripts %}

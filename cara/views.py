@@ -57,17 +57,35 @@ def bars_page(request):
 
 def base_page(request):
     try:
-        svg_data = return_svg_from_file('output_mod.svg')
+        svg_data = return_svg_from_file('new_svg.svg')
     except FileNotFoundError:
         svg_data = f'Source is empty'
     smzu_file_name = get_SMZU_file()
 
     context = {
         'title': 'Base page',
+        'header_content': 'Выбор расчетной схемы',
         'smzu_file_name': smzu_file_name,
         'svg_data': svg_data,
     }
-    return render(request, 'tmpp.html', context=context)
+    switcher = 0
+    if switcher == 0:
+        return render(request, 'title_page.html', context=context)
+    else:
+        return render(request, 'base_index.html', context=context)
+
+
+def second_page(request):
+    try:
+        svg_data = return_svg_from_file('new_svg.svg')
+    except FileNotFoundError:
+        svg_data = f'Source is empty'
+    context = {
+        'title': 'second page',
+        'header_content': 'Выбор аварийного процесса',
+        'svg_data': svg_data,
+    }
+    return render(request, 'second_page.html', context)
 
 
 def process_data(request):

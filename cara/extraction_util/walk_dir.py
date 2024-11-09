@@ -5,6 +5,7 @@ from datetime import datetime
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse, HttpRequest
 from django.views.decorators.csrf import csrf_exempt
+from typing import List, Optional
 import py7zr
 
 TEST = True
@@ -19,35 +20,64 @@ else:
     BASE_PATH = r"\\srv-smzu2-sz\CFRAS\FilesRegim\Good"
 
 
-def get_SMZU_file() -> str:
+def get_current_datetime() -> datetime:
     """
-    Функция создает копию файла mdp_debug_0 в WORKDIR_PATH
-    :return: строка формата YYYY-MM-DDTHH:MM для использования в html шаблоне
+    Возвращает текущую дату и время.
+
+    Returns:
+        datetime: Текущая дата и время.
     """
+    return datetime.now()
 
-    # получаем текущую дату и время для поиска ближайшего файла расчета
-    current_datetime = datetime.now()
 
-    # сканируем родительский каталог для поиска папки с датой, ближайшей к текущей
-    date_dirs = [d for d in os.listdir(BASE_PATH) if os.path.isdir(os.path.join(BASE_PATH, d))]
-    date_dirs = sorted(date_dirs, reverse=True)
-    closest_date_dir = None
+def get_sorted_date_dirs(base_path: str) -> List[str]:
+    """
+    Возвращает список директорий с датами, отсортированный в порядке убывания.
 
+    Args:
+        base_path (str): Путь к каталогу, в котором нужно искать папки с датами.
+
+    Returns:
+        List[str]: Список папок с датами, отсортированный от самой новой к самой старой.
+    """
+    date_dirs = [d for d in os.listdir(base_path) if os.path.isdir(os.path.join(base_path, d))]
+    return sorted(date_dirs, reverse=True)
+
+
+def find_closest_date_dir(date_dirs: List[str], current_datetime: datetime) -> Optional[str]:
+    """
+    Находит ближайшую папку с датой, которая не превышает текущую дату.
+
+    Args:
+        date_dirs (List[str]): Список названий папок с датами.
+        current_datetime (datetime): Текущая дата и время для сравнения.
+
+    Returns:
+        Optional[str]: Название ближайшей папки с датой или None, если ничего не найдено.
+    """
     for date_dir in date_dirs:
         try:
             date_obj = datetime.strptime(date_dir, '%Y_%m_%d')
             if date_obj <= current_datetime:
-                closest_date_dir = date_dir
-                break
+                return date_dir
         except ValueError:
             continue
+    return None
 
-    # продумать вариант с базовым шаблоном, чтобы не крашить программу
-    if not closest_date_dir:
-        raise Exception("Нет подходящей папки с датой")
 
-    # сканируем полученную ранее директорию для поиска последней по времени папки
-    time_dir_path = os.path.join(BASE_PATH, closest_date_dir)
+def find_closest_time_dir(date_dir: str, base_path: str, current_datetime: datetime) -> Optional[str]:
+    """
+    Находит ближайшую папку со временем в указанной папке с датой.
+
+    Args:
+        date_dir (str): Название папки с датой.
+        base_path (str): Базовый путь к каталогу с папкой даты.
+        current_datetime (datetime): Текущая дата и время для сравнения.
+
+    Returns:
+        Optional[str]: Название ближайшей папки со временем или None, если ничего не найдено.
+    """
+    time_dir_path = os.path.join(base_path, date_dir)
     time_dirs = [d for d in os.listdir(time_dir_path) if os.path.isdir(os.path.join(time_dir_path, d))]
     closest_time_dir = None
     min_time_diff = None
@@ -55,7 +85,7 @@ def get_SMZU_file() -> str:
     for time_dir in time_dirs:
         try:
             time_obj = datetime.strptime(time_dir, '%H_%M_%S').time()
-            full_time = datetime.combine(datetime.strptime(closest_date_dir, '%Y_%m_%d').date(), time_obj)
+            full_time = datetime.combine(datetime.strptime(date_dir, '%Y_%m_%d').date(), time_obj)
             time_diff = abs((full_time - current_datetime).total_seconds())
 
             if min_time_diff is None or time_diff < min_time_diff:
@@ -63,19 +93,50 @@ def get_SMZU_file() -> str:
                 closest_time_dir = time_dir
         except ValueError:
             continue
+    return closest_time_dir
 
+
+def copy_file_to_workdir(source_file_path: str, destination_file_path: str) -> None:
+    """
+    Копирует указанный файл в рабочую директорию с новым именем.
+
+    Args:
+        source_file_path (str): Путь к исходному файлу.
+        destination_file_path (str): Путь к файлу в рабочей директории.
+
+    Raises:
+        FileNotFoundError: Если исходный файл не найден.
+    """
+    if not os.path.isfile(source_file_path):
+        raise FileNotFoundError(f"Файл mdp_debug_0 не найден в {source_file_path}")
+    shutil.copy2(source_file_path, destination_file_path)
+
+
+def get_SMZU_file() -> str:
+    """
+    Создает копию файла 'mdp_debug_0' в рабочей директории и возвращает строку с датой и временем.
+
+    Returns:
+        str: Строка в формате 'YYYY-MM-DDTHH:MM' для использования в HTML-шаблоне.
+
+    Raises:
+        Exception: Если не найдена подходящая папка с датой или временем.
+    """
+    current_datetime = get_current_datetime()
+    date_dirs = get_sorted_date_dirs(BASE_PATH)
+
+    closest_date_dir = find_closest_date_dir(date_dirs, current_datetime)
+    if not closest_date_dir:
+        raise Exception("Нет подходящей папки с датой")
+
+    closest_time_dir = find_closest_time_dir(closest_date_dir, BASE_PATH, current_datetime)
     if not closest_time_dir:
         raise Exception("Нет подходящей папки со временем")
 
-    # копируем искомый файл в заданный путь, меняем название на work_file
-    source_file_path = os.path.join(time_dir_path, closest_time_dir, 'mdp_debug_0')
-    if not os.path.isfile(source_file_path):
-        raise FileNotFoundError(f"Файл mdp_debug_0 не найден в {source_file_path}")
-
+    source_file_path = os.path.join(BASE_PATH, closest_date_dir, closest_time_dir, 'mdp_debug_0')
     destination_file_path = os.path.join(WORKDIR_PATH, 'work_file')
-    shutil.copy2(source_file_path, destination_file_path)
+    copy_file_to_workdir(source_file_path, destination_file_path)
 
-    # получаем строку для использования в html шаблоне
     date_part = closest_date_dir.replace('_', '-')
     time_part = closest_time_dir[:5].replace('_', ':')
     result_str = f"{date_part}T{time_part}"
@@ -152,9 +213,13 @@ def scan_subdirectories(directory_name: str, file_name: str) -> str:
 
 def check_path(file_path: str) -> None:
     """
-    Функция копирует или извлекает содержимое архива в рабочую директорию
-    :param file_path: путь к директории или архиву
-    :return: None
+    Проверяет, является ли путь директорией или архивом, и копирует либо извлекает содержимое в рабочую директорию.
+
+    Args:
+        file_path (str): Путь к директории или архиву.
+
+    Returns:
+        None
     """
     clear_directory()
     if os.path.isdir(file_path):
@@ -165,9 +230,13 @@ def check_path(file_path: str) -> None:
 
 def extract_archive(archive_path: str) -> None:
     """
-    Функция извлекает архив в заданную директорию.
-    :param archive_path: путь к 7z архиву
-    :return: None
+    Извлекает содержимое 7z архива в рабочую директорию.
+
+    Args:
+        archive_path (str): Путь к 7z архиву.
+
+    Returns:
+        None
     """
     with py7zr.SevenZipFile(archive_path, 'r') as archive:
         archive.extractall(path=WORKDIR_PATH)
@@ -175,9 +244,10 @@ def extract_archive(archive_path: str) -> None:
 
 def clear_directory() -> None:
     """
-    Функция производит удаление всех дирекорий и файлов по заданному пути.
-    :param extract_path: путь к директории
-    :return: None
+    Удаляет все файлы и папки в рабочей директории.
+
+    Returns:
+        None
     """
     for filename in os.listdir(WORKDIR_PATH):
         file_path = os.path.join(WORKDIR_PATH, filename)

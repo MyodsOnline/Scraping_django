@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     min-width: 1050px;
+    min-height: 500px;
 }
 
 header {
@@ -18,15 +19,13 @@ header {
     flex-direction: column;
     background-color: rgba(35, 39, 43, 1);
     padding: 15px 45px;
+    z-index: 1;
 }
 
 header a {
     color: azure;
     text-decoration: none;
     cursor: pointer;
-    font-weight: 400;
-    display: inline;
-    width: fit-content;
 }
 
 header a:hover {
@@ -34,9 +33,17 @@ header a:hover {
 }
 
 main {
-    display: flex;
-    padding: 10px 35px 20px;
-    flex-direction: column;
+    height: calc(100vh - 90px);
+    overflow: hidden;
+    padding: 10px 20px;
+    position: relative;
+}
+
+#svg_content {
+    background: linear-gradient( 90deg, white 50%, transparent 50%);
+    background-size: 1em 1em;
+    border-radius: 10px;
+    height: -webkit-fill-available;
 }
 
 nav {
@@ -65,18 +72,6 @@ section {
     align-items: baseline;
 }
 
-/*
-.datetime-icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 10px;
-    pointer-events: none;
-    color: gray;
-    font-size: 1.2em;
-}
-*/
-
 #datetime-select {
     background-color: rgb(43, 46, 51);
     margin: 0 0 0 15px;
@@ -90,7 +85,7 @@ section {
     cursor: pointer;
 }
 
-.buttons_block button, .modal-buttons button:first-child {
+.modal-buttons button:first-child {
     margin-right: 10px;
 }
 
@@ -109,16 +104,16 @@ section {
 .secondary {
     background-color: rgb(44, 46, 51);
     box-shadow: inset 2px 2px 3px rgba(35, 39, 42, 0.8);
-    }
+}
 
 .secondary:hover, .primary {
     background-color: rgba(6, 94, 238, 1);
     box-shadow: none;
-    }
+}
 
 .styled:active {
     box-shadow: inset 2px 2px 3px rgba(35, 39, 42, 0.8);
-    }
+}
 
 #modal-datetime {
     padding: 7px;
@@ -130,101 +125,6 @@ section {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
-#svg_content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: inset 2px 2px 3px rgba(35, 39, 42, 0.8);
-    border-radius: 7px;
-    background-color: black;
-    height: calc(100vh - 150px);
-    background: linear-gradient( 90deg, white 50%, transparent 50%);
-    background-size: 1em 1em;
-}
-
-#scheme {
-    background: black;
-    cursor: auto;
-    touch-action: none;
-    transform-origin: 50% 50%;
-    transition: transform 200ms ease-in-out;
-    transform: scale(0.35) translate(0, 45vh);
-}
-
-#scheme_buttons {
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    z-index: 2;
-    top: 0;
-    right: 0;
-}
-
-.scheme_buttons_style {
-    width: 50px;
-    height: 50px;
-    margin: 10px 10px 0px 10px;
-    border-radius: 7px;
-    background-color: rgba(43, 46, 52, .8);
-    border: none;
-    cursor: pointer;
-}
-
-.colored, #to_home:hover, .brick_button_s:hover {
-    background-color: rgba(6, 94, 238, .71);
-}
-
-#selected_elements {
-    position: absolute;
-    display: none;
-    z-index: 3;
-    margin: 10px;
-    width: 300px;
-    top: 0;
-    right: 60px;
-    padding: 4px;
-    border-radius: 7px;
-    background-color: rgba(43, 46, 51, .8);
-    color: rgba(255, 255, 255, 0.87);
-    font-weight: 100;
-}
-
-#selected_elements span {
-    display: block;
-    margin-right: 5px;
-}
-
-#selected_elements_list {
-    margin-bottom: 4px;
-}
-
-.selected_elements_buttons {
-    display: flex;
-}
-
-.brick_button_s {
-    width: 30px;
-    height: 30px;
-    border-radius: 7px;
-    border: none;
-    margin-right: 5px;
-    cursor: pointer;
-    background-color: rgba(43, 46, 52, .8);
-}
-
-.brick_button_b {
-    flex-grow: 1;
-    height: 30px;
-    border-radius: 7px;
-    border: none;
-    cursor: pointer;
-    padding: 0px 5px;
-    font-size: .9em;
-    background-color: rgba(6, 94, 238, .71);
-    color: #d6d6d6;
-}
-
-/* Основные стили */
 #datetime-container {
     display: flex;
     background-color: rgb(35, 39, 42);
@@ -235,7 +135,7 @@ section {
     align-items: baseline;
 }
 
-#target-datetime {
+#target-datetime, #consumption_values_list input {
     background-color: rgb(43, 46, 51);
     margin: 0 0 0 15px;
     font-family: sans-serif;
@@ -261,7 +161,6 @@ section {
     color: gray;
 }
 
-/* Стили для модального окна */
 .modal {
     display: none;
     position: fixed;
@@ -297,41 +196,16 @@ section {
     margin-top: 10px;
 }
 
-#info {
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    background-color: rgba(222, 85, 136, 0.7);
-    margin: 5px;
-    width: 300px;
-    word-break: break-all;
-    padding: 7px 20px 7px 7px;
-}
-
-#close-info {
-    position: absolute;
-    top: 0px;
-    right: 7px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-/* блок стилей svg */
-path:hover, rect:hover {
-    cursor: pointer;
-}
-
-/* блок tooltip */
 .tooltiptext {
     visibility: hidden;
-    width: 130px;
+    width: 110px;
     font-size: 14px;
     background-color: rgba(55, 60, 67, .8);
     text-align: center;
     border-radius: 6px;
     padding: 5px;
     position: absolute;
-    z-index: 1;
+    z-index: 50;
     bottom: 100%;
     left: 50%;
     margin-left: -60px;
@@ -341,15 +215,47 @@ path:hover, rect:hover {
 }
 
 .scheme_buttons_style .tooltiptext {
-    left: 25px;
+    bottom: 55px;
 }
 
-.tooltiptext.second {
-    bottom: 120px;
+.description {
+    position: absolute;
+    left: -10px;
+    top: 0;
+    transform: translate(-100%);
+    background: rgba(35, 39, 43, 1);
+    padding: 15px;
+    color: white;
+    font-weight: 100;
+    width: max-content;
+    border-radius: 7px;
 }
 
-.tooltiptext.third {
-    bottom: 65px;
+#consumption_values_list li {
+    list-style: none;
+}
+
+#consumption_values_list div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    align-items: baseline;
+}
+
+#consumption_values_list input {
+    padding: 9px 10px;
+}
+
+#selected_elements_apply {
+    margin-top: 15px;
+}
+
+#consumption_values_apply {
+    margin-top: 8px;
+}
+
+#selected_elements, #consumption_values {
+    visibility: hidden;
 }
 
 .tooltiptext::after {
@@ -364,7 +270,103 @@ path:hover, rect:hover {
 }
 
 .datetime-wrapper:hover .tooltiptext,
-.scheme_buttons_style:hover .tooltiptext {
+.svg_button_wrapper:hover + .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+#scheme_buttons {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    z-index: 6;
+    top: 85px;
+    right: 30px;
+}
+
+.scheme_buttons_style {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: 10px 10px 0 10px;
+    border-radius: 7px;
+    background-color: rgba(43, 46, 52, .8);
+    border: none;
+}
+
+.active_scheme_button {
+    background-color: rgba(71, 73, 75, .8);
+    border-radius: 7px;
+}
+
+.svg_button_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#scheme_choices {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    z-index: 6;
+    top: 95px;
+    right: 90px;
+}
+
+#selected_elements_list {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+}
+
+#selected_elements_list li {
+    margin-bottom: 5px;
+}
+
+#selected_elements_list li:last-child {
+    margin-bottom: 0;
+}
+
+.element_status {
+    margin-right: 5px;
+    font-weight: 800;
+}
+
+.delete_button {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#info {
+    padding: 10px;
+    position: absolute;
+    display: none;
+    color: white;
+    word-break: break-all;
+    width: 350px;
+    top: 16px;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 5px;
+}
+
+#datetime-msg {
+    font-weight: 100;
+}
+
+#close-info {
+    cursor: pointer;
+    margin: 1px 0px 0px 10px;
+}
+
+#status-msg {
+    margin: 1px 10px 0px 0px;
 }

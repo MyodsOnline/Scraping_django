@@ -1,16 +1,30 @@
 // блок настройки отображения svg схемы с библиотекой Panzoom
-const element = document.getElementById('scheme')
-const panzoom = Panzoom(element, {
-    maxScale: 7,
-    minScale: 1,
-    cursor: 'auto'
-});
-// Возможность использовать мышь для масштабирования
-element.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
-// Обработчик кнопки сброса масштабирования и перемещения
-document.getElementById('to_home').addEventListener('click', function () {
-    panzoom.reset();
-});
+    const schemeElement = document.getElementById('scheme');
+    const panzoom = Panzoom(schemeElement, {
+        maxScale: 3,          // Максимальный масштаб
+        minScale: 0.2,        // Минимальный масштаб
+        initialScale: 0.35,   // Начальный масштаб
+        initialX: 0,          // Начальное смещение по X
+        initialY: window.innerHeight * 0.45 // Начальное смещение по Y
+    });
+
+    // Устанавливаем точные начальные стили сразу после инициализации Panzoom
+    schemeElement.style.transform = 'scale(0.35) translate(0, 45vh)';
+
+    // Обработчик масштабирования колесиком мыши
+    schemeElement.addEventListener('wheel', panzoom.zoomWithWheel);
+
+    // Обработчик для кнопки "Сбросить масштаб"
+    document.getElementById('to_home').addEventListener('click', () => {
+        panzoom.reset({
+            animate: true,
+            duration: 200,
+            easing: "easeInOut"
+        });
+        schemeElement.style.transformOrigin = '50% 50%';
+        schemeElement.style.transition = 'transform 200ms ease-in-out';
+        schemeElement.style.transform = 'scale(0.35) translate(0, 45vh)';
+    });
 
 
 // блок взаимодействия элементов схемы svg с полем input и окрашивание элементов
