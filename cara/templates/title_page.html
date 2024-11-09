@@ -9,10 +9,15 @@
     {% include 'includes/navigation.html' %}
     {% include 'includes/svg_content.html' %}
     {% include 'includes/scheme_buttons.html' %}
+    <div id="scheme_choices">
+        {% include 'includes/description.html' %}
+        {% include 'includes/consumption.html' %}
+    </div>
     {% include 'includes/notification.html' %}
 {% endblock main_content %}
 
 {% block js_scripts %}
     <script src="{% static 'js/panzoom_control.js' %}"></script>
     <script src="{% static 'js/context_datetime.js' %}"></script>
+    <script src="{% static 'js/scheme_buttons.js' %}"></script>
 {% endblock js_scripts %}

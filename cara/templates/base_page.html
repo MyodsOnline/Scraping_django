@@ -7,6 +7,8 @@
     <title>{{ title }}</title>
     <link rel="shortcut icon" href="{% static 'icon/favicon.png' %}" type="image/png">
     <link rel="stylesheet" href="{% static 'css/title_page.css' %}">
+    {% block local_css %}
+    {% endblock local_css %}
     <script src="{% static 'js/panzoom.js' %}"></script>
 </head>
 <body>

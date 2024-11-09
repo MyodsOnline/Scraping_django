@@ -64,6 +64,7 @@ def base_page(request):
 
     context = {
         'title': 'Base page',
+        'header_content': 'Выбор расчетной схемы',
         'smzu_file_name': smzu_file_name,
         'svg_data': svg_data,
     }
@@ -72,6 +73,19 @@ def base_page(request):
         return render(request, 'title_page.html', context=context)
     else:
         return render(request, 'base_index.html', context=context)
+
+
+def second_page(request):
+    try:
+        svg_data = return_svg_from_file('new_svg.svg')
+    except FileNotFoundError:
+        svg_data = f'Source is empty'
+    context = {
+        'title': 'second page',
+        'header_content': 'Выбор аварийного процесса',
+        'svg_data': svg_data,
+    }
+    return render(request, 'second_page.html', context)
 
 
 def process_data(request):
