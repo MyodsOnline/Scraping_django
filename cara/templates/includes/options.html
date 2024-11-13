@@ -1,0 +1,24 @@
+<nav>
+    <div id="options">
+        <form id="options_container">
+        <div class="options_temp">
+            <label for="temp_setter">ТНВ, °С</label>
+            <input type="number" min="-20" max="50" value="17" id="temp_setter">
+            <span class="tooltiptext">Список изменений</span>
+        </div>
+        <div class="options_calc">
+            <label for="cyclic_calc">Цикличный расчет</label>
+            <input type="checkbox" name="cyclic_calc" id="cyclic_calc" />
+            <span class="tooltiptext">Список изменений</span>
+        </div>
+        <div class="options_calc">
+            <label for="automatic_calc">Расчет без ПА</label>
+            <input type="checkbox" name="automatic_calc" id="automatic_calc" />
+            <span class="tooltiptext">Список изменений</span>
+        </div>
+        </form>
+    </div>
+    <div class="buttons_block">
+        <button type="submit" id="ap_start" class="styled primary">Рассчитать АП</button>
+    </div>
+</nav>

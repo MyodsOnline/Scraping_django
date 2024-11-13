@@ -34,7 +34,6 @@ header a:hover {
 
 main {
     height: calc(100vh - 90px);
-    overflow: hidden;
     padding: 10px 20px;
     position: relative;
 }
@@ -43,7 +42,8 @@ main {
     background: linear-gradient( 90deg, white 50%, transparent 50%);
     background-size: 1em 1em;
     border-radius: 10px;
-    height: -webkit-fill-available;
+    height: calc(100vh - 144px);
+    position: relative;
 }
 
 nav {
