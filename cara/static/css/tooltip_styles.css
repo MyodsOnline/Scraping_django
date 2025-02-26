@@ -1,0 +1,30 @@
+/* базовые стили разметки элемента tooltip */
+
+.tooltiptext {
+    visibility: hidden;
+    width: 110px;
+    font-size: 14px;
+    background-color: rgba(55, 60, 67, .8);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 50;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.1s;
+    color: rgba(181, 187, 196, 1);
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(55, 60, 67, 1) transparent transparent transparent;
+}

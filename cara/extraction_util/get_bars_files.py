@@ -81,13 +81,41 @@ def find_bars_file(directory_name: str, file_name: str) -> str:
         return f'Возникла ошибка: {e}'
 
 
-def copy_file_to_work_dir(file_path) -> str:
-    try:
-        destination_file_path = os.path.join(WORKDIR_PATH, "work_file")
-        shutil.copyfile(file_path, destination_file_path)
-        with open(destination_file_path, 'w', encoding='utf-8') as file:
-            file.write(f'{file_path}')
+def copy_file_to_work_dir(file_path: str) -> str:
+    """
+    Копирует файл в рабочую директорию и записывает путь исходного файла в новый файл.
 
-        return f'Файл {file_path} скопирован в "{WORKDIR_PATH}"'
+    Args:
+    ----------
+    file_path : str
+        Путь к исходному файлу, который нужно скопировать.
+
+    Returns:
+    -------
+    str
+        Сообщение об успешном копировании файла или сообщение об ошибке.
+
+    Raises:
+    ------
+    FileNotFoundError
+        Если указанный файл не найден.
+    PermissionError
+        Если у программы нет прав доступа к файлу или директории.
+    """
+    destination_file_name = "work_file"
+    destination_file_path = os.path.join(WORKDIR_PATH, destination_file_name)
+
+    try:
+        shutil.copyfile(file_path, destination_file_path)
+
+        with open(destination_file_path, 'w', encoding='utf-8') as file:
+            file.write(file_path)
+
+        return f'Файл "{file_path.split("/Bars_files/")[-1]}" скопирован в "{destination_file_path}"'
+
+    except FileNotFoundError:
+        return f"Ошибка: файл {file_path} не найден."
+    except PermissionError:
+        return "Ошибка: недостаточно прав для копирования файла."
     except Exception as e:
         return f"Ошибка при копировании файла: {e}"

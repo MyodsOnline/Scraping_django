@@ -1,43 +1,3 @@
-* {
-    margin: 0px;
-    padding: 0px;
-    font-family: "Roboto Regular", sans-serif;
-}
-
-.wrapper {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(43, 46, 52, 1);
-    display: flex;
-    flex-direction: column;
-    min-width: 1050px;
-    min-height: 500px;
-}
-
-header {
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(35, 39, 43, 1);
-    padding: 15px 45px;
-    z-index: 1;
-}
-
-header a {
-    color: azure;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-header a:hover {
-    text-decoration: underline;
-}
-
-main {
-    height: calc(100vh - 90px);
-    padding: 10px 20px;
-    position: relative;
-}
-
 #svg_content {
     background: linear-gradient( 90deg, white 50%, transparent 50%);
     background-size: 1em 1em;
@@ -196,24 +156,6 @@ section {
     margin-top: 10px;
 }
 
-.tooltiptext {
-    visibility: hidden;
-    width: 110px;
-    font-size: 14px;
-    background-color: rgba(55, 60, 67, .8);
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 50;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.1s;
-    color: rgba(181, 187, 196, 1);
-}
-
 .scheme_buttons_style .tooltiptext {
     bottom: 55px;
 }
@@ -256,17 +198,6 @@ section {
 
 #selected_elements, #consumption_values {
     visibility: hidden;
-}
-
-.tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: rgba(55, 60, 67, 1) transparent transparent transparent;
 }
 
 .datetime-wrapper:hover .tooltiptext,
