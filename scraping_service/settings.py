@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'boss_says',
     'cara',
     'ck11',
+    'srdk',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +139,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'zvk/static'),
     os.path.join(BASE_DIR, 'boss_says/static'),
     os.path.join(BASE_DIR, 'sara/static'),
+    os.path.join(BASE_DIR, 'srdk/static'),
 ]
 
 MEDIA_URL = '/media/'

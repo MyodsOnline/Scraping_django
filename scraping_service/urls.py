@@ -15,6 +15,7 @@ urlpatterns = [
     path('boss_says/', include('boss_says.urls')),
     path('cara/', include('cara.urls', namespace='cara')),
     path('ck/', include('ck11.urls', namespace='ck11')),
+    path('srdk/', include('srdk.urls', namespace='srdk')),
 ]
 
 if settings.DEBUG:
