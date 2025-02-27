@@ -7,9 +7,12 @@
     <title>SRDK helper</title>
     <link rel="shortcut icon" href="{% static 'icon/favicon.png' %}" type="image/png">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
 </head>
 <body>
     {{ data }}
+    <div id="drop-area">
+        <p>Перетащите сюда файл .xlsx</p>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
